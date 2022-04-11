@@ -1,0 +1,106 @@
+.row{
+    --bs-gutter-x: 0 !important;
+}
+p{
+    display: inline-block;
+}
+
+img{
+    display: inline-block;
+}
+
+.navPrincipal > p{
+    color: rgb(10, 10, 10);
+}
+
+.navPrincipal{
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+    padding-top: 2% !important;
+    padding-bottom: 1% !important;
+}
+
+.imgLogo{
+    position: relative;
+    width: 50%;
+}
+
+.cart{
+    padding-left: 70px !important;
+}
+
+.h5{
+    padding-top: 10px;
+    padding-left: 30px;
+}
+#bodyPrincipal{
+    width: 100%;
+    height: auto;
+}
+.img-principal-1{
+    width: 350px;
+    margin-top: 15%;
+    margin-right: 15%;
+    margin-left: 10%;
+}
+.img-principal-2{
+    width: 350px;
+    height: 256;
+    margin-top: 15%;
+    margin-left: 10%;
+}
+
+.txtPrincipal{
+    padding-top: 5%;
+    padding-left: 3% !important;
+}
+
+.txtPrincipal > p{
+    color: #000;
+}
+
+.footer{
+    color: white;
+    background-color: black;
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
+
+.footer > div > p{
+    display: block;
+}
+
+.footerTitulo{
+    font-size: 25px;
+    color: rgb(189, 4, 4);
+}
+
+.imgcat > img{
+    width: 50%;
+    margin: 50px 0px 25px 50px;
+}
+
+.CatTitulo{
+    font-size: xx-large;
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+}
+body{
+    position: relative;
+}
+body::after{
+    content: '';
+    display: block;
+    height: 230px;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+}
