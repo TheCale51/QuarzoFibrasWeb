@@ -17,6 +17,7 @@ img{
 
 
 .navPrincipal{
+    background-color: #db0e0e;
     padding-left: 5% !important;
     padding-right: 5% !important;
     padding-top: 2% !important;
@@ -142,8 +143,8 @@ footer{
     margin-left: 20% !important;
 }
 
-.btn{
-    margin-left: 50%;
+.btnCenter{
+    margin-left: 50% !important;
 }
 
 .bodyContainerAbout{
@@ -174,4 +175,36 @@ footer{
 
 .box-heading > h5{
     font-size: 25px;
+}
+
+.bodyPedido{
+    padding-left: 8% !important;
+    padding-right: 8% !important;
+}
+
+.boxPedido{
+    width: 95% !important;
+}
+
+.btnLeft{
+    margin-left: 0% !important;
+}
+
+.bodyContainerCart{
+    padding-left: 8% !important;
+    padding-right: 8% !important;
+}
+
+.itemBtn{
+    padding-top: 70px !important;
+}
+
+.containerCart{
+    padding: 2em;
+    border: #000 2px solid;
+    border-radius: 5px;
+}
+
+.itemCart{
+    margin-bottom: 20px;
 }
