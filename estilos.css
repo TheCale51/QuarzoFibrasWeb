@@ -86,6 +86,11 @@ img{
     color: rgb(189, 4, 4);
 }
 
+.imgcat > a > img{
+    width: 50%;
+    margin: 50px 0px 25px 50px;
+}
+
 .imgcat > img{
     width: 50%;
     margin: 50px 0px 25px 50px;
@@ -207,4 +212,18 @@ footer{
 
 .itemCart{
     margin-bottom: 20px;
+}
+
+h1{
+    margin-top: 0.5em !important;
+}
+
+.bodyContainerProducto{
+    padding-left: 8% !important;
+    padding-right: 8% !important;
+}
+
+.txtDescripcion{
+    word-wrap: break-word;
+    font-size: 25px;
 }
