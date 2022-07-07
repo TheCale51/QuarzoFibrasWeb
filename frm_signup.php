@@ -20,6 +20,17 @@ $muni="SELECT Municipio FROM municipio ORDER BY Municipio";
             }
         </script>
 
+        <script language=javascript>
+            function numToWhiteSpace(e){
+                e.value = e.value.replace(/[^abcdefghijklmnopqrstuvwxyzñ ]/gi, "")
+            }
+        </script>
+        <script language=javascript>
+            function keyToWhiteSpace(e){
+                e.value = e.value.replace(/[^0-9]/g, "")
+            }
+        </script>
+
     </head>
         
         <body>
@@ -113,14 +124,28 @@ $muni="SELECT Municipio FROM municipio ORDER BY Municipio";
                                 </div>
                             </div>
 
-                            <div class="mb-3 mt-3">
-                                <label for="nombres" class="form-label">Nombres:</label>
-                                <input type="text" class="form-control xl" name="nombres" required placeholder="Nombres">
+                            <div class="mb-3 mt-3 row">
+                                <div class="col">
+                                    <label for="dir" class="form-label">Dirección:</label>
+                                    <input type="text" class="form-control sm" name="dir" required placeholder="Dirección">
+                                </div>
+                                <div class="col">
+                                    <label for="barrio" class="form-label">Barrio:</label>
+                                    <input type="text" class="form-control sm" name="barrio" required placeholder="Barrio">
+                                </div>
                             </div>
-                            <div class="mb-3 mt-3">
-                                <label for="apellidos" class="form-label">Apellidos:</label>
-                                <input type="text" class="form-control xl" name="apellidos" required placeholder="Apellidos">
+                            
+                            <div class="mb-3 mt-3 row">
+                                <div class="col">
+                                    <label for="nombres" class="form-label">Nombres:</label>
+                                    <input type="text" class="form-control sm" name="nombres" required placeholder="Nombres" onkeydown="numToWhiteSpace(this);" onkeyup="numToWhiteSpace(this);">
+                                </div>
+                                <div class="col">
+                                    <label for="apellidos" class="form-label">Apellidos:</label>
+                                    <input type="text" class="form-control sm" name="apellidos" required placeholder="Apellidos" onkeydown="numToWhiteSpace(this);" onkeyup="numToWhiteSpace(this);">
+                                </div>
                             </div>
+
                             <div class="mb-3 mt-3">
                                 <label for="email" class="form-label">Correo:</label>
                                 <input type="email" class="form-control xl" name="email" required placeholder="Correo electronico">
@@ -129,22 +154,22 @@ $muni="SELECT Municipio FROM municipio ORDER BY Municipio";
                             <div class="mb-3 mt-3 row">
                                 <div class="col">
                                     <label for="celular1" class="form-label">Celular:</label>
-                                    <input type="tel" class="form-control sm" name="celular1" required placeholder="Celular">
+                                    <input type="tel" class="form-control sm" name="celular1" required placeholder="Celular" maxlength="10" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
                                 </div>
                                 <div class="col">
                                     <label for="celular2" class="form-label">Celular 2:</label>
-                                    <input type="tel" class="form-control sm" name="celular2" placeholder="Celular">
+                                    <input type="tel" class="form-control sm" name="celular2" placeholder="Celular" maxlength="10" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
                                 </div>
                             </div>
 
                             <div class="mb-3 mt-3 row">
                                 <div class="col">
                                     <label for="telefono1" class="form-label">Telefono:</label>
-                                    <input type="tel" class="form-control sm" name="telefono1" placeholder="Telefono">
+                                    <input type="tel" class="form-control sm" name="telefono1" placeholder="Telefono" maxlength="7" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
                                 </div>
                                 <div class="col">
                                     <label for="telefono2" class="form-label">Telefono 2:</label>
-                                    <input type="tel" class="form-control sm" name="telefono2" placeholder="Telefono">
+                                    <input type="tel" class="form-control sm" name="telefono2" placeholder="Telefono" maxlength="7" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
                                 </div>
                             </div>
 
@@ -153,14 +178,6 @@ $muni="SELECT Municipio FROM municipio ORDER BY Municipio";
                                 <input type="date" class="form-control xl" required name="fechaNac">
                             </div>
 
-                            <div class="mb-3 mt-3">
-                                <label for="dir" class="form-label">Dirección:</label>
-                                <input type="text" class="form-control xl" name="dir" required placeholder="Dirección">
-                            </div>
-                            <div class="mb-3 mt-3">
-                                <label for="barrio" class="form-label">Barrio:</label>
-                                <input type="text" class="form-control xl" name="barrio" required placeholder="Barrio">
-                            </div>
                             <div class="mb-3 mt-3">
                                 <label for="pass" class="form-label">Contraseña:</label>
                                 <input type="password" class="form-control xl" required placeholder="Contraseña" name="pass">

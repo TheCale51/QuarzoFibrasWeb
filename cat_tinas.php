@@ -14,39 +14,39 @@
                     <img class="imgLogo" src="img/logo.gif">
                 </div>
                 <div class="col-xxl-2 col-sm-2 cart">
-                    <a href="carrito.html"><img src="img/Shopping-cart.png" width="64px" height="56px"></a>
+                    <a href="carrito.php"><img src="img/Shopping-cart.png" width="64px" height="56px"></a>
                 </div>
                 <div class="col-xxl-2 col-sm-2 login">
-                    <a class="noDecoration" href="frm_login.html"><p class="h5">Iniciar Sesión</p></a>
+                    <a class="noDecoration" href="frm_login.php"><p class="h5">Iniciar Sesión</p></a>
                 </div>
                 <div class="col-xxl-2 col-sm-2 signup">
-                    <a class="noDecoration" href="frm_signup.html"><p class="h5">Registrarse</p></a>
+                    <a class="noDecoration" href="frm_signup.php"><p class="h5">Registrarse</p></a>
                 </div>
             </div>
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
                 <div  class="container-fluid">
                     <ul class="navbar-nav">
                         <li class="nav-item navHome">
-                            <a class="nav-link" href="principal.html">Inicio</a>
+                            <a class="nav-link" href="principal.php">Inicio</a>
                         </li>
                         <li class="nav-item dropdown navCat">
                         <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#">Catálogo de Productos</a>
                         <ul class="dropdown-menu bg-dark">
-                            <li><a class="dropdown-item text-white" href="cat_alcobas.html">Alcobas</a></li>
-                            <li><a class="dropdown-item text-white" href="cat_baños.html">Baños</a></li>
-                            <li><a class="dropdown-item text-white" href="cat_barras.html">Barras</a></li>
-                            <li><a class="dropdown-item text-white" href="cat_closets.html">Closets</a></li>
-                            <li><a class="dropdown-item text-white" href="cat_jacuzzis.html">Jacuzzis</a></li>
-                            <li><a class="dropdown-item text-white" href="cat_tinas.html">Tinas</a></li>
-                            <li><a class="dropdown-item text-white" href="cat_piscinas.html">Piscinas</a></li>
-                            <li><a class="dropdown-item text-white" href="cat_stands.html">Stands</a></li>
-                            <li><a class="dropdown-item text-white" href="cat_barras.html">Barras</a></li>
-                            <li><a class="dropdown-item text-white" href="cat_lavaderos.html">Lavaderos</a></li>
-                            <li><a class="dropdown-item text-white" href="cat_lavamanos.html">Lavamanos</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_alcobas.php">Alcobas</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_baños.php">Baños</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_barras.php">Barras</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_closets.php">Closets</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_jacuzzis.php">Jacuzzis</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_tinas.php">Tinas</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_piscinas.php">Piscinas</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_stands.php">Stands</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_barras.php">Barras</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_lavaderos.php">Lavaderos</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_lavamanos.php">Lavamanos</a></li>
                         </ul>
                         </li>
                         <li class="nav-item navAbout">
-                            <a class="nav-link" href="about.html">Sobre nosotros</a>
+                            <a class="nav-link" href="about.php">Sobre nosotros</a>
                         </li>
                     </ul>
                 </div>
