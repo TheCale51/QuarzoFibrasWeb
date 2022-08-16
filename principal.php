@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("db.php");
 ?>
 
@@ -21,10 +22,22 @@ include("db.php");
                     <a href="carrito.php"><img src="img/Shopping-cart.png" width="64px" height="56px"></a>
                 </div>
                 <div class="col-xxl-2 col-sm-2 login">
-                    <a class="noDecoration" href="frm_login.php"><p class="h5">Iniciar Sesión</p></a>
+                    <?php $string1 = "<a class='noDecoration' href='frm_login.php'><p class='h5'>Iniciar Sesión</p></a>";
+                    error_reporting(E_ERROR | E_PARSE);
+                    if (($_SESSION["email"]) != null)
+                        echo "<a href='#'><img style='width: 64px;height: 64px;border-radius: 45%;' src='img/default_profile.png'></a>";
+                    else
+                    echo "$string1"
+                    ?>
                 </div>
                 <div class="col-xxl-2 col-sm-2 signup">
-                    <a class="noDecoration" href="frm_signup.php"><p class="h5">Registrarse</p></a>
+                    <?php $string2 = "<a class='noDecoration' href='frm_signup.php'><p class='h5'>Registrarse</p></a>";
+                    error_reporting(E_ERROR | E_PARSE);
+                    if (($_SESSION["email"]) != null)
+                        echo "<a href='config_acc.php'><img style='width: 64px;height: 64px;' src='img/settings_icon.png'></a>";
+                    else
+                    echo "$string2"
+                    ?>
                 </div>
             </div>
                     <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">

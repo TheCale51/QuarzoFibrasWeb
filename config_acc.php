@@ -1,6 +1,8 @@
 <?php
 session_start();
+include("db.php");
 ?>
+
 <html lang="es">
     <head>
         <title>QuarzoFibras</title>
@@ -68,25 +70,7 @@ session_start();
                     </nav>
 
             <div id="bodyPrincipal" class="row">
-                <div class="col-xxl-12 bodyContainerProducto">
-                    <div class="col-xxl-12">
-                        <h1 style="text-align: left;"><span>Título del Producto</span></h1>
-                    </div>
-                </div>
-                <div class="col-xxl-12 bodyContainerProducto">
-                    <div class="row">
-                        <div class="col-xxl-4 col-lg-4 col-sm-12" >
-                            <img src="img/Alcobas-1.jpg" width="70%">
-                        </div>
-                        <div class="col-xxl-8 col-lg-8 col-sm-12">
-                            <p class="txtDescripcion">Texto genérico para la descripción del producto</p>
-                            <p class="txtDescripcion">Precio Base: $000.000</p>
-                        </div>
-                        <div class="col-xxl-12 col-sm-12">
-                            <a href="frm_pedido.php"><button type="button" class="btn btn-primary mt-3">Comprar Producto</button></a>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </body>
 
