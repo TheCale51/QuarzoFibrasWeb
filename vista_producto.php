@@ -1,5 +1,11 @@
 <?php
 session_start();
+include("db.php");
+@$productid=$_GET["id"];
+@$img=$_GET["img"];
+$consulta = $conexion->query("SELECT * FROM `detallesproducto` WHERE `idDetallesProducto` ='$productid'");
+$col = $consulta->fetch_assoc();
+
 ?>
 <html lang="es">
     <head>
@@ -29,10 +35,22 @@ session_start();
                     ?>
                 </div>
                 <div class="col-xxl-2 col-sm-2 signup">
-                    <?php $string2 = "<a class='noDecoration' href='frm_signup.php'><p class='h5'>Registrarse</p></a>";
+                <?php $string2 = "<a class='noDecoration' href='frm_signup.php'><p class='h5'>Registrarse</p></a>";
                     error_reporting(E_ERROR | E_PARSE);
                     if (($_SESSION["email"]) != null)
-                        echo "<a href='config_acc.php'><img style='width: 64px;height: 64px;' src='img/settings_icon.png'></a>";
+                        echo "<nav style='padding-top: 0% !important;' class='navbar navbar-expand-sm RedColor navbar-dark'>
+                        <div  class='container-fluid'>
+                            <ul class='navbar-nav'>
+                                <li class='nav-item dropdown navCat'>
+                                <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' href='config_acc.php'><img style='width: 64px;height: 64px;' src='img/settings_icon.png'></a>
+                                    <ul class='dropdown-menu bg-dark'>
+                                        <li><a class='dropdown-item text-white' href='config_acc.php'>Configuración</a></li>
+                                        <li><a class='dropdown-item text-white' href='logout.php'>Cerrar Sesión</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>";
                     else
                     echo "$string2"
                     ?>
@@ -70,20 +88,24 @@ session_start();
             <div id="bodyPrincipal" class="row">
                 <div class="col-xxl-12 bodyContainerProducto">
                     <div class="col-xxl-12">
-                        <h1 style="text-align: left;"><span>Título del Producto</span></h1>
+                        <?php
+                        echo "<h1 style='text-align: left;'><span>$col[Nombre_Producto]</span></h1>";
+                        ?>
                     </div>
                 </div>
                 <div class="col-xxl-12 bodyContainerProducto">
                     <div class="row">
                         <div class="col-xxl-4 col-lg-4 col-sm-12" >
-                            <img src="img/Alcobas-1.jpg" width="70%">
+                            <?php echo "<img src='img$img.jpg' width='70%'>"?>
                         </div>
                         <div class="col-xxl-8 col-lg-8 col-sm-12">
-                            <p class="txtDescripcion">Texto genérico para la descripción del producto</p>
-                            <p class="txtDescripcion">Precio Base: $000.000</p>
+                            <?php
+                            echo "<p style='word-wrap: break-word;font-size: 25px;'>$col[Descripcion]</p>";
+                            echo "<p style='font-size: 25px;'>Precio Base: $$col[Valor]</p>";
+                            ?>
                         </div>
                         <div class="col-xxl-12 col-sm-12">
-                            <a href="frm_pedido.php"><button type="button" class="btn btn-primary mt-3">Comprar Producto</button></a>
+                            <?php echo "<a href='frm_pedido.php?id=$productid&img=$img'><button type='button' class='btn btn-primary mt-3'>Comprar Producto</button></a>"?>
                         </div>
                     </div>
                 </div>

@@ -29,10 +29,22 @@ session_start();
                     ?>
                 </div>
                 <div class="col-xxl-2 col-sm-2 signup">
-                    <?php $string2 = "<a class='noDecoration' href='frm_signup.php'><p class='h5'>Registrarse</p></a>";
+                <?php $string2 = "<a class='noDecoration' href='frm_signup.php'><p class='h5'>Registrarse</p></a>";
                     error_reporting(E_ERROR | E_PARSE);
                     if (($_SESSION["email"]) != null)
-                        echo "<a href='config_acc.php'><img style='width: 64px;height: 64px;' src='img/settings_icon.png'></a>";
+                        echo "<nav style='padding-top: 0% !important;' class='navbar navbar-expand-sm RedColor navbar-dark'>
+                        <div  class='container-fluid'>
+                            <ul class='navbar-nav'>
+                                <li class='nav-item dropdown navCat'>
+                                <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' href='config_acc.php'><img style='width: 64px;height: 64px;' src='img/settings_icon.png'></a>
+                                    <ul class='dropdown-menu bg-dark'>
+                                        <li><a class='dropdown-item text-white' href='config_acc.php'>Configuración</a></li>
+                                        <li><a class='dropdown-item text-white' href='logout.php'>Cerrar Sesión</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>";
                     else
                     echo "$string2"
                     ?>
@@ -55,7 +67,7 @@ session_start();
                             <li><a class="dropdown-item text-white" href="cat_tinas.php">Tinas</a></li>
                             <li><a class="dropdown-item text-white" href="cat_piscinas.php">Piscinas</a></li>
                             <li><a class="dropdown-item text-white" href="cat_stands.php">Stands</a></li>
-                            <li><a class="dropdown-item text-white" href="cat_barras.php">Barras</a></li>
+                            <li><a class="dropdown-item text-white" href="cat_cocinas.php">Cocinas</a></li>
                             <li><a class="dropdown-item text-white" href="cat_lavaderos.php">Lavaderos</a></li>
                             <li><a class="dropdown-item text-white" href="cat_lavamanos.php">Lavamanos</a></li>
                         </ul>

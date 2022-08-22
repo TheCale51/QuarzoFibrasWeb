@@ -1,5 +1,6 @@
 <?php
 include("db.php");
+include("validacion_signup.php");
 $depa="SELECT DISTINCT Departamento, idDepartamento FROM departamento ORDER BY Departamento";
 $muni="SELECT Municipio FROM municipio ORDER BY Municipio";
 @$getid=$_GET['d'];
@@ -188,10 +189,6 @@ $muni="SELECT Municipio FROM municipio ORDER BY Municipio";
                             </div>
                             <button type="submit" name="register" class="btn btn-primary mt-3 btnLeft">Registrarse</button>
                         </form>
-                        <?php
-                        include("validacion_signup.php");
-                        //print_r($idfinal);
-                        ?>
                     </div>
                 </div>
             </div>

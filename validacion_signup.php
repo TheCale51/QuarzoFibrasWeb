@@ -2,8 +2,9 @@
 include("db.php");
 
 if (isset($_POST['register'])){
-    if ($_POST['pass'] === $_POST['passcheck']){            
+    if ($_POST['pass'] === $_POST['passcheck']){
         if (strlen($_POST['nombres']) >= 1 && strlen($_POST['apellidos']) >= 1 && strlen($_POST['email']) >= 1 && strlen($_POST['celular1']) >= 1 && strlen($_POST['pass']) >= 1 && strlen($_POST['passcheck']) >= 1){
+
         $nombres=trim($_POST['nombres']);
         $apellidos=trim($_POST['apellidos']);
         $email=trim($_POST['email']);
@@ -31,12 +32,11 @@ if (isset($_POST['register'])){
         $insert3="INSERT INTO `cliente`(`idCliente`, `Municipio_idMunicipio`, `Telefono_idTelefono`, `Celular_idCelular`, `Correo`, `Direccion`, `Nombres`, `Apellidos`, `Fecha_Nacimiento`, `Barrio`, `Contraseña`)
          VALUES ('NULL','$muni','$idfinal','$idfinal','$email','$dir','$nombres','$apellidos','$fechaNac','$barrio','$pass')";
         $resultado3=mysqli_query($conexion,$insert3);
+
+        header("location:frm_login.php");
         }
     }else{
-        echo "<small style='color: red;'>Las contraseñas no coinciden</small>";
+        echo "<script>alert('Las contraseñas no coinciden!'); window.location.href='frm_signup.php';</script>";
     }
 }
-
-
-
 ?>
