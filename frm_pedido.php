@@ -6,7 +6,7 @@ include("db.php");
 $consulta = $conexion->query("SELECT * FROM `detallesproducto` WHERE `idDetallesProducto` ='$productid'");
 $col = $consulta->fetch_assoc();
 
-$infoconsulta = $conexion->query("SELECT `Nombres`,`Apellidos`,celular.Celular1, celular.Celular2, telefono.Telefono1, telefono.Telefono2, `Direccion`,`Barrio`, municipio.Municipio, departamento.Departamento FROM `cliente` INNER JOIN celular on cliente.idCliente=celular.idCelular INNER JOIN telefono on cliente.idCliente=telefono.idTelefono INNER JOIN municipio on municipio.idMunicipio=cliente.Municipio_idMunicipio INNER JOIN departamento on departamento.idDepartamento=municipio.Departamento_idDepartamento WHERE cliente.idCliente=3");
+$infoconsulta = $conexion->query("SELECT `Nombres`,`Apellidos`,celular.Celular1, celular.Celular2, telefono.Telefono1, telefono.Telefono2, `Direccion`,`Barrio`, municipio.Municipio, departamento.Departamento FROM `cliente` INNER JOIN celular on cliente.idCliente=celular.idCelular INNER JOIN telefono on cliente.idCliente=telefono.idTelefono INNER JOIN municipio on municipio.idMunicipio=cliente.Municipio_idMunicipio INNER JOIN departamento on departamento.idDepartamento=municipio.Departamento_idDepartamento WHERE cliente.idCliente=$_SESSION[idcliente]");
 $infocliente = $infoconsulta->fetch_assoc();
 
 ?>
@@ -18,10 +18,28 @@ $infocliente = $infoconsulta->fetch_assoc();
         <script src="lib/jquery-3.6.0.js" ></script>
         <link rel="stylesheet" href="lib/bootstrap-5/css/bootstrap.css" />
         <script src="lib/bootstrap-5/js/bootstrap.js" ></script>
+
+        <script language=javascript>
+            function numToWhiteSpace(e){
+                e.value = e.value.replace(/[^abcdefghijklmnopqrstuvwxyzñ ]/gi, "")
+            }
+        </script>
+        <script language=javascript>
+            function keyToWhiteSpace(e){
+                e.value = e.value.replace(/[^0-9]/g, "")
+            }
+        </script>
+
         </head>
         
         <body>
-            <div class="row navPrincipal">
+        <?php 
+            error_reporting(E_ERROR | E_PARSE);
+            if ($_SESSION['email'] == !null)
+                echo "<div class='row navPrincipal'>";
+            else
+            echo "<div class='row navPrincipalNoLogged'>";
+            ?>
                 <div class="col-xxl-6 col-sm-6 logo">
                     <img class="imgLogo" src="img/logo.gif">
                 </div>
@@ -29,18 +47,16 @@ $infocliente = $infoconsulta->fetch_assoc();
                     <a href="carrito.php"><img src="img/Shopping-cart.png" width="64px" height="56px"></a>
                 </div>
                 <div class="col-xxl-2 col-sm-2 login">
-                    <?php $string1 = "<a class='noDecoration' href='frm_login.php'><p class='h5'>Iniciar Sesión</p></a>";
-                    error_reporting(E_ERROR | E_PARSE);
-                    if (($_SESSION["email"]) != null)
+                    <?php
+                    if ($_SESSION["email"] != null)
                         echo "<a href='#'><img style='width: 64px;height: 64px;border-radius: 45%;' src='img/default_profile.png'></a>";
                     else
-                    echo "$string1"
+                    echo "<a class='noDecoration' href='frm_login.php'><p class='h5'>Iniciar Sesión</p></a>"
                     ?>
                 </div>
                 <div class="col-xxl-2 col-sm-2 signup">
-                <?php $string2 = "<a class='noDecoration' href='frm_signup.php'><p class='h5'>Registrarse</p></a>";
-                    error_reporting(E_ERROR | E_PARSE);
-                    if (($_SESSION["email"]) != null)
+                <?php
+                    if ($_SESSION["email"] != null)
                         echo "<nav style='padding-top: 0% !important;' class='navbar navbar-expand-sm RedColor navbar-dark'>
                         <div  class='container-fluid'>
                             <ul class='navbar-nav'>
@@ -55,7 +71,7 @@ $infocliente = $infoconsulta->fetch_assoc();
                         </div>
                     </nav>";
                     else
-                    echo "$string2"
+                    echo "<a class='noDecoration' href='frm_signup.php'><p class='h5'>Registrarse</p></a>";
                     ?>
                 </div>
             </div>
@@ -108,42 +124,42 @@ $infocliente = $infoconsulta->fetch_assoc();
                                     <form>
                                         <div class="mb-3 mt-3 row">
                                             <div class="col">
-                                            <input type="text" class="form-control boxPedido" id="nombre" required placeholder="Nombres" name="nombre">
+                                            <?php echo "<input type='text' class='form-control boxPedido' required placeholder='Nombres' value='$infocliente[Nombres]' name='nombre' onkeydown='numToWhiteSpace(this);' onkeyup='numToWhiteSpace(this);'>"?>
                                             </div>
                                             <div class="col">
-                                            <input type="text" class="form-control" id="apellido" required placeholder="Apellidos" name="apellido">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 mt-3 row">
-                                            <div class="col">
-                                            <input type="text" class="form-control boxPedido" id="depa" required placeholder="Departamento" name="depa">
-                                            </div>
-                                            <div class="col">
-                                            <input type="text" class="form-control" id="ciudad" required placeholder="Ciudad/Municipio" name="ciudad">
+                                            <?php echo "<input type='text' class='form-control' required placeholder='Apellidos' value='$infocliente[Apellidos]' name='apellido' onkeydown='numToWhiteSpace(this);' onkeyup='numToWhiteSpace(this);'>"?>
                                             </div>
                                         </div>
                                         <div class="mb-3 mt-3 row">
                                             <div class="col">
-                                            <input type="text" class="form-control boxPedido" id="barrio" required placeholder="Barrio" name="barrio">
+                                            <?php echo "<input type='text' class='form-control boxPedido' required placeholder='Departamento' value='$infocliente[Departamento]' name='depa'>"?>
                                             </div>
                                             <div class="col">
-                                            <input type="text" class="form-control " id="dir" required placeholder="Dirección" name="dir">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 mt-3 row">
-                                            <div class="col">
-                                            <input type="tel" class="form-control boxPedido" id="tel1" placeholder="Telefono" name="tel1">
-                                            </div>
-                                            <div class="col">
-                                            <input type="tel" class="form-control" id="tel2" placeholder="Telefono 2" name="tel2">
+                                            <?php echo "<input type='text' class='form-control' required placeholder='Ciudad/Municipio' value='$infocliente[Municipio]'name='ciudad'>"?>
                                             </div>
                                         </div>
                                         <div class="mb-3 mt-3 row">
                                             <div class="col">
-                                            <input type="tel" class="form-control boxPedido" id="cel1" required placeholder="Celular" name="cel1">
+                                            <?php echo "<input type='text' class='form-control boxPedido' required placeholder='Barrio' value='$infocliente[Barrio]' name='barrio'>"?>
                                             </div>
                                             <div class="col">
-                                            <input type="tel" class="form-control" id="cel2" placeholder="Celular 2" name="cel2">
+                                            <?php echo "<input type='text' class='form-control' required placeholder='Dirección' value='$infocliente[Direccion]'name='dir'>"?>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 mt-3 row">
+                                            <div class="col">
+                                            <?php echo "<input type='tel' class='form-control boxPedido' required placeholder='Celular' value='$infocliente[Celular1]' name='cel1' maxlength='10' onkeydown='keyToWhiteSpace(this);'' onkeyup='keyToWhiteSpace(this);'>"?>
+                                            </div>
+                                            <div class="col">
+                                            <?php echo "<input type='tel' class='form-control' placeholder='Celular 2' value='$infocliente[Celular2]' name='cel2' maxlength='10' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);''>"?>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 mt-3 row">
+                                            <div class="col">
+                                            <?php echo "<input type='tel' class='form-control boxPedido' placeholder='Telefono' value='$infocliente[Telefono1]' name='tel1' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);'>"?>
+                                            </div>
+                                            <div class="col">
+                                            <?php echo "<input type='tel' class='form-control' placeholder='Telefono 2' value='$infocliente[Telefono2]' name='tel2' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);'>"?>
                                             </div>
                                         </div>
                                         <!--<div class="mb-3 mt-3">

@@ -9,7 +9,13 @@
         </head>
         
         <body>
-            <div class="row navPrincipal">
+        <?php 
+            error_reporting(E_ERROR | E_PARSE);
+            if ($_SESSION['email'] == !null)
+                echo "<div class='row navPrincipal'>";
+            else
+            echo "<div class='row navPrincipalNoLogged'>";
+            ?>
                 <div class="col-xxl-6 col-sm-6 logo">
                     <img class="imgLogo" src="img/logo.gif">
                 </div>
@@ -17,10 +23,32 @@
                     <a href="carrito.php"><img src="img/Shopping-cart.png" width="64px" height="56px"></a>
                 </div>
                 <div class="col-xxl-2 col-sm-2 login">
-                    <a class="noDecoration" href="#"><p class="h5">Iniciar Sesión</p></a>
+                    <?php
+                    if ($_SESSION["email"] != null)
+                        echo "<a href='#'><img style='width: 64px;height: 64px;border-radius: 45%;' src='img/default_profile.png'></a>";
+                    else
+                    echo "<a class='noDecoration' href='frm_login.php'><p class='h5'>Iniciar Sesión</p></a>"
+                    ?>
                 </div>
                 <div class="col-xxl-2 col-sm-2 signup">
-                    <a class="noDecoration" href="frm_signup.php"><p class="h5">Registrarse</p></a>
+                <?php
+                    if ($_SESSION["email"] != null)
+                        echo "<nav style='padding-top: 0% !important;' class='navbar navbar-expand-sm RedColor navbar-dark'>
+                        <div  class='container-fluid'>
+                            <ul class='navbar-nav'>
+                                <li class='nav-item dropdown navCat'>
+                                <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' href='config_acc.php'><img style='width: 64px;height: 64px;' src='img/settings_icon.png'></a>
+                                    <ul class='dropdown-menu bg-dark'>
+                                        <li><a class='dropdown-item text-white' href='config_acc.php'>Configuración</a></li>
+                                        <li><a class='dropdown-item text-white' href='logout.php'>Cerrar Sesión</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>";
+                    else
+                    echo "<a class='noDecoration' href='frm_signup.php'><p class='h5'>Registrarse</p></a>";
+                    ?>
                 </div>
             </div>
                     <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">

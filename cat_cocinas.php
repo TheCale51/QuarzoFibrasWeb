@@ -12,7 +12,13 @@ session_start();
     </head>
         
         <body>
-            <div class="row navPrincipal">
+        <?php 
+            error_reporting(E_ERROR | E_PARSE);
+            if ($_SESSION['email'] == !null)
+                echo "<div class='row navPrincipal'>";
+            else
+            echo "<div class='row navPrincipalNoLogged'>";
+            ?>
                 <div class="col-xxl-6 col-sm-6 logo">
                     <img class="imgLogo" src="img/logo.gif">
                 </div>
@@ -20,18 +26,16 @@ session_start();
                     <a href="carrito.php"><img src="img/Shopping-cart.png" width="64px" height="56px"></a>
                 </div>
                 <div class="col-xxl-2 col-sm-2 login">
-                    <?php $string1 = "<a class='noDecoration' href='frm_login.php'><p class='h5'>Iniciar Sesión</p></a>";
-                    error_reporting(E_ERROR | E_PARSE);
-                    if (($_SESSION["email"]) != null)
+                    <?php
+                    if ($_SESSION["email"] != null)
                         echo "<a href='#'><img style='width: 64px;height: 64px;border-radius: 45%;' src='img/default_profile.png'></a>";
                     else
-                    echo "$string1"
+                    echo "<a class='noDecoration' href='frm_login.php'><p class='h5'>Iniciar Sesión</p></a>"
                     ?>
                 </div>
                 <div class="col-xxl-2 col-sm-2 signup">
-                <?php $string2 = "<a class='noDecoration' href='frm_signup.php'><p class='h5'>Registrarse</p></a>";
-                    error_reporting(E_ERROR | E_PARSE);
-                    if (($_SESSION["email"]) != null)
+                <?php
+                    if ($_SESSION["email"] != null)
                         echo "<nav style='padding-top: 0% !important;' class='navbar navbar-expand-sm RedColor navbar-dark'>
                         <div  class='container-fluid'>
                             <ul class='navbar-nav'>
@@ -46,7 +50,7 @@ session_start();
                         </div>
                     </nav>";
                     else
-                    echo "$string2"
+                    echo "<a class='noDecoration' href='frm_signup.php'><p class='h5'>Registrarse</p></a>";
                     ?>
                 </div>
             </div>
