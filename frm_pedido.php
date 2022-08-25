@@ -1,6 +1,6 @@
 <?php
-session_start();
 include("db.php");
+include("validacion_pedido.php");
 @$productid=$_GET["id"];
 @$img=$_GET["img"];
 $consulta = $conexion->query("SELECT * FROM `detallesproducto` WHERE `idDetallesProducto` ='$productid'");
@@ -121,57 +121,57 @@ $infocliente = $infoconsulta->fetch_assoc();
                             </div>
                             <div class="col-xxl-10">
                                 <div>
-                                    <form>
+                                    <form method="post">
                                         <div class="mb-3 mt-3 row">
                                             <div class="col">
-                                            <?php echo "<input type='text' class='form-control boxPedido' required placeholder='Nombres' value='$infocliente[Nombres]' name='nombre' onkeydown='numToWhiteSpace(this);' onkeyup='numToWhiteSpace(this);'>"?>
+                                            <?php echo "<input type='text' class='form-control boxPedido' disabled required placeholder='Nombres' value='$infocliente[Nombres]' name='nombre' onkeydown='numToWhiteSpace(this);' onkeyup='numToWhiteSpace(this);'>"?>
                                             </div>
                                             <div class="col">
-                                            <?php echo "<input type='text' class='form-control' required placeholder='Apellidos' value='$infocliente[Apellidos]' name='apellido' onkeydown='numToWhiteSpace(this);' onkeyup='numToWhiteSpace(this);'>"?>
+                                            <?php echo "<input type='text' class='form-control' disabled required placeholder='Apellidos' value='$infocliente[Apellidos]' name='apellido' onkeydown='numToWhiteSpace(this);' onkeyup='numToWhiteSpace(this);'>"?>
                                             </div>
                                         </div>
                                         <div class="mb-3 mt-3 row">
                                             <div class="col">
-                                            <?php echo "<input type='text' class='form-control boxPedido' required placeholder='Departamento' value='$infocliente[Departamento]' name='depa'>"?>
+                                            <?php echo "<input type='text' class='form-control boxPedido' disabled required placeholder='Departamento' value='$infocliente[Departamento]' name='depa'>"?>
                                             </div>
                                             <div class="col">
-                                            <?php echo "<input type='text' class='form-control' required placeholder='Ciudad/Municipio' value='$infocliente[Municipio]'name='ciudad'>"?>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 mt-3 row">
-                                            <div class="col">
-                                            <?php echo "<input type='text' class='form-control boxPedido' required placeholder='Barrio' value='$infocliente[Barrio]' name='barrio'>"?>
-                                            </div>
-                                            <div class="col">
-                                            <?php echo "<input type='text' class='form-control' required placeholder='Dirección' value='$infocliente[Direccion]'name='dir'>"?>
+                                            <?php echo "<input type='text' class='form-control' disabled required placeholder='Ciudad/Municipio' value='$infocliente[Municipio]'name='ciudad'>"?>
                                             </div>
                                         </div>
                                         <div class="mb-3 mt-3 row">
                                             <div class="col">
-                                            <?php echo "<input type='tel' class='form-control boxPedido' required placeholder='Celular' value='$infocliente[Celular1]' name='cel1' maxlength='10' onkeydown='keyToWhiteSpace(this);'' onkeyup='keyToWhiteSpace(this);'>"?>
+                                            <?php echo "<input type='text' class='form-control boxPedido' disabled required placeholder='Barrio' value='$infocliente[Barrio]' name='barrio'>"?>
                                             </div>
                                             <div class="col">
-                                            <?php echo "<input type='tel' class='form-control' placeholder='Celular 2' value='$infocliente[Celular2]' name='cel2' maxlength='10' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);''>"?>
+                                            <?php echo "<input type='text' class='form-control' disabled required placeholder='Dirección' value='$infocliente[Direccion]'name='dir'>"?>
                                             </div>
                                         </div>
                                         <div class="mb-3 mt-3 row">
                                             <div class="col">
-                                            <?php echo "<input type='tel' class='form-control boxPedido' placeholder='Telefono' value='$infocliente[Telefono1]' name='tel1' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);'>"?>
+                                            <?php echo "<input type='tel' class='form-control boxPedido' disabled required placeholder='Celular' value='$infocliente[Celular1]' name='cel1' maxlength='10' onkeydown='keyToWhiteSpace(this);'' onkeyup='keyToWhiteSpace(this);'>"?>
                                             </div>
                                             <div class="col">
-                                            <?php echo "<input type='tel' class='form-control' placeholder='Telefono 2' value='$infocliente[Telefono2]' name='tel2' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);'>"?>
+                                            <?php echo "<input type='tel' class='form-control' disabled placeholder='Celular 2' value='$infocliente[Celular2]' name='cel2' maxlength='10' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);''>"?>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 mt-3 row">
+                                            <div class="col">
+                                            <?php echo "<input type='tel' class='form-control boxPedido' disabled placeholder='Telefono' value='$infocliente[Telefono1]' name='tel1' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);'>"?>
+                                            </div>
+                                            <div class="col">
+                                            <?php echo "<input type='tel' class='form-control' disabled placeholder='Telefono 2' value='$infocliente[Telefono2]' name='tel2' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);'>"?>
                                             </div>
                                         </div>
                                         <!--<div class="mb-3 mt-3">
                                             <label for="comment">Comentario para personalización del producto</label>
                                             <textarea class="form-control" rows="5" id="comment" name="personalizacion"></textarea>
                                         </div>-->
-                                    </form>
-                                    <div class="row">
-                                        <div>
-                                            <button type="button" class="btn btn-primary btnLeft">Enviar Pedido</button>
+                                        <div class="row">
+                                            <div>
+                                                <button type="submit" name="pedidoTrigger" class="btn btn-primary btnLeft">Enviar Pedido</button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

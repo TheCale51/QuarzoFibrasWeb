@@ -88,7 +88,7 @@
                             <div class="col-xxl-12 col-sm-12 bodyFormSign">
                                 <form action="validacion_login.php" method="post">
                                     <div class="mb-3 mt-3">
-                                        <input type="email" class="form-control xxl" id="email" required placeholder="Correo electronico" name="email">
+                                        <input type="email" class="form-control xxl" required placeholder="Correo electronico" name="email">
                                     </div>
                                     <div class="mb-3 mt-3">
                                         <input type="password" class="form-control xxl" required placeholder="Contraseña" name="pass">
