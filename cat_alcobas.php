@@ -87,7 +87,7 @@ session_start();
                     <p class="CatTitulo">Alcobas</p>
                 </div>
                 <div class="col-sm-6 imgcat">
-                    <a href="vista_producto.php?id=1&img=/Alcobas-1"><img src="img/Alcobas-1.jpg"></a>
+                    <a href="vista_producto.php?id=1"><img src="img/Alcobas-1.jpg"></a>
                     <img src="img/Alcobas-2.jpg">
                     <img src="img/Alcobas-3.jpg">
                 </div>

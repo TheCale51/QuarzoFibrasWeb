@@ -1,5 +1,7 @@
 <?php
 session_start();
+include("db.php");
+$consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on producto.idProducto=pedido.Producto_idProducto INNER JOIN detallesproducto on detallesproducto.idDetallesProducto=pedido.Producto_idProducto WHERE pedido.Cliente_idCliente = '$_SESSION[idcliente]';");
 ?>
 <html lang="es">
     <head>
@@ -92,36 +94,26 @@ session_start();
                 <div class="row">
                     <div class="col-xxl-12 bodyContainerCart">
                         <div class="col-xxl-12 containerCart">
-                            <div class="row itemCart">
-                                <div class="col-xxl-3 col-lg-4 col-sm-4 itemHead">
+                            <?php
+                            while($col=$consulta->fetch_assoc()){
+                                echo "<div class='row itemCart'>
+                                <div class='col-xxl-3 col-lg-4 col-sm-4 itemHead'>
                                     <div>
-                                        <h2 style="text-align: left;"><span>Título del Producto</span></h2>
-                                        <img src="img/Alcobas-1.jpg" width="50%">
+                                        <h2 style='text-align: left;'><span>$col[Nombre_Producto]</span></h2>
+                                        <img src='$col[Img]' width='50%''>
                                     </div>
                                 </div>
-                                <div class="col-xxl-2 col-lg-3 col-sm-3 itemBtn">
+                                <div class='col-xxl-2 col-lg-3 col-sm-3 itemBtn'>
                                     <div>
-                                        <button type="button" class="btn btn-primary">Confirmar Pedido</button>
-                                        <button type="button" style="margin-top: 5px;" class="btn btn-primary">Ver Factura</button>
-                                        <h5 style="text-align: left;"><span>Estado: <span>En Espera</span></span></h5>
+                                        <button type='button' class='btn btn-primary'>Cancelar Pedido</button>
+                                        <button type='button' style='margin-top: 5px;' class='btn btn-primary'>Ver Factura</button>
+                                        <h5 style='text-align: left;'><span>Estado: <span>$col[Estado]</span></span></h5>
+                                        <h5 style='text-align: left;'><span>Codigo: <span>$col[Codigo]</span></span></h5>
+                                        <h5 style='text-align: left;'><span>Fecha: <span>$col[Fecha]</span></span></h5>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row itemCart">
-                                <div class="col-xxl-3 col-lg-4 col-sm-4 itemHead">
-                                    <div>
-                                        <h2 style="text-align: left;"><span>Título del Producto</span></h2>
-                                        <img src="img/Alcobas-2.jpg" width="50%">
-                                    </div>
-                                </div>
-                                <div class="col-xxl-2 col-lg-3 col-sm-3 itemBtn">
-                                    <div>
-                                        <button type="button" class="btn btn-primary">Confirmar Pedido</button>
-                                        <button type="button" style="margin-top: 5px;" class="btn btn-primary">Ver Factura</button>
-                                        <h5 style="text-align: left;"><span>Estado: <span>En Espera</span></span></h5>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>";
+                            }?>
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,6 @@
 session_start();
 include("db.php");
 @$productid=$_GET["id"];
-@$img=$_GET["img"];
 $consulta = $conexion->query("SELECT * FROM `detallesproducto` WHERE `idDetallesProducto` ='$productid'");
 $col = $consulta->fetch_assoc();
 
@@ -100,7 +99,7 @@ $col = $consulta->fetch_assoc();
                 <div class="col-xxl-12 bodyContainerProducto">
                     <div class="row">
                         <div class="col-xxl-4 col-lg-4 col-sm-12" >
-                            <?php echo "<img src='img$img.jpg' width='70%'>"?>
+                            <?php echo "<img src='$col[Img]' width='70%'>"?>
                         </div>
                         <div class="col-xxl-8 col-lg-8 col-sm-12">
                             <?php
@@ -110,7 +109,7 @@ $col = $consulta->fetch_assoc();
                         </div>
                         <div class="col-xxl-12 col-sm-12">
                             <?php if ($_SESSION['idcliente'] != null){
-                                echo "<a href='frm_pedido.php?id=$productid&img=$img'><button type='button' class='btn btn-primary mt-3'>Comprar Producto</button></a>";
+                                echo "<a href='frm_pedido.php?id=$productid'><button type='button' class='btn btn-primary mt-3'>Comprar Producto</button></a>";
                             }else{
                                 echo "<a href='frm_login.php'><button type='button' class='btn btn-primary mt-3'>Comprar Producto</button></a>";
                                 echo "<span class='txtWarning'>Primero necesita estar registrado para hacer el pedido</span>";

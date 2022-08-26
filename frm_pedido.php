@@ -2,7 +2,6 @@
 include("db.php");
 include("validacion_pedido.php");
 @$productid=$_GET["id"];
-@$img=$_GET["img"];
 $consulta = $conexion->query("SELECT * FROM `detallesproducto` WHERE `idDetallesProducto` ='$productid'");
 $col = $consulta->fetch_assoc();
 
@@ -106,7 +105,7 @@ $infocliente = $infoconsulta->fetch_assoc();
 
             <div id="bodyPrincipal" class="row">
                 <div class="col-xxl-12">
-                    <h1 style="text-align: center;"><span>Configurar Pedido</span></h1>
+                    <h1 style="text-align: center;"><span>Datos del Pedido</span></h1>
                 </div>
                 <div class="col-xxl-12">
                     <div class="col-xxl-12 bodyPedido">
@@ -116,7 +115,7 @@ $infocliente = $infoconsulta->fetch_assoc();
                                     <?php echo "<h1 style='text-align: left;'><span>$col[Nombre_Producto]</span></h1>"?>
                                 </div>
                                 <div>
-                                    <?php echo "<img src='img$img.jpg' width='70%'>"?>
+                                    <?php echo "<img src='$col[Img]' width='70%'>"?>
                                 </div>
                             </div>
                             <div class="col-xxl-10">
