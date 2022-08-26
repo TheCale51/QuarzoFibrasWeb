@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2022 at 11:36 PM
+-- Generation Time: Aug 26, 2022 at 11:13 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -145,15 +145,16 @@ CREATE TABLE `detallesproducto` (
   `Medidas` varchar(45) DEFAULT NULL,
   `Valor` int(10) DEFAULT NULL,
   `Nombre_Producto` varchar(45) DEFAULT NULL,
-  `Descripcion` varchar(255) DEFAULT NULL
+  `Descripcion` varchar(255) DEFAULT NULL,
+  `Img` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `detallesproducto`
 --
 
-INSERT INTO `detallesproducto` (`idDetallesProducto`, `Categoria_idCategoria`, `Material`, `Medidas`, `Valor`, `Nombre_Producto`, `Descripcion`) VALUES
-(1, 1, NULL, NULL, 1000000, 'Muebles para la Alcoba', 'Juego de alcoba con muebles y mesa pequeña con vidrio');
+INSERT INTO `detallesproducto` (`idDetallesProducto`, `Categoria_idCategoria`, `Material`, `Medidas`, `Valor`, `Nombre_Producto`, `Descripcion`, `Img`) VALUES
+(1, 1, NULL, NULL, 1000000, 'Muebles para la Alcoba', 'Juego de alcoba con muebles y mesa pequeña con vidrio', 'img/Alcobas-1.jpg');
 
 -- --------------------------------------------------------
 
