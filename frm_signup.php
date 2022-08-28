@@ -46,7 +46,13 @@ $muni="SELECT Municipio FROM municipio ORDER BY Municipio";
                     <img class="imgLogo" src="img/logo.gif">
                 </div>
                 <div class="col-xxl-2 col-sm-2 cart">
-                    <a href="carrito.php"><img src="img/Shopping-cart.png" width="64px" height="56px"></a>
+                <?php
+                if($_SESSION["email"] == 'cproberto026@gmail.com'){
+                    echo "<a href='carrito_adm.php'><img src='img/Shopping-cart.png' width='64px' height='56px'></a>";
+                }else{
+                    echo "<a href='carrito.php'><img src='img/Shopping-cart.png' width='64px' height='56px'></a>";
+                }
+                ?>
                 </div>
                 <div class="col-xxl-2 col-sm-2 login">
                     <?php
@@ -183,22 +189,22 @@ $muni="SELECT Municipio FROM municipio ORDER BY Municipio";
                             <div class="mb-3 mt-3 row">
                                 <div class="col">
                                     <label for="celular1" class="form-label">Celular:</label>
-                                    <input type="tel" class="form-control sm" name="celular1" required placeholder="Celular" maxlength="10" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
+                                    <input type="tel" class="form-control sm" name="celular1" required placeholder="Celular" minlength="10" maxlength="10" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
                                 </div>
                                 <div class="col">
                                     <label for="celular2" class="form-label">Celular 2:</label>
-                                    <input type="tel" class="form-control sm" name="celular2" placeholder="Celular" maxlength="10" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
+                                    <input type="tel" class="form-control sm" name="celular2" placeholder="Celular" minlength="10" maxlength="10" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
                                 </div>
                             </div>
 
                             <div class="mb-3 mt-3 row">
                                 <div class="col">
                                     <label for="telefono1" class="form-label">Telefono:</label>
-                                    <input type="tel" class="form-control sm" name="telefono1" placeholder="Telefono" maxlength="7" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
+                                    <input type="tel" class="form-control sm" name="telefono1" placeholder="Telefono" minlength="7" maxlength="7" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
                                 </div>
                                 <div class="col">
                                     <label for="telefono2" class="form-label">Telefono 2:</label>
-                                    <input type="tel" class="form-control sm" name="telefono2" placeholder="Telefono" maxlength="7" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
+                                    <input type="tel" class="form-control sm" name="telefono2" placeholder="Telefono" minlength="7" maxlength="7" onkeydown="keyToWhiteSpace(this);" onkeyup="keyToWhiteSpace(this);">
                                 </div>
                             </div>
 
@@ -209,13 +215,13 @@ $muni="SELECT Municipio FROM municipio ORDER BY Municipio";
 
                             <div class="mb-3 mt-3">
                                 <label for="pass" class="form-label">Contraseña:</label>
-                                <input type="password" class="form-control xl" required placeholder="Contraseña" name="pass">
+                                <input type="password" class="form-control xl" minlength="6" required placeholder="Contraseña" name="pass">
                             </div>
                             <div class="mb-3 mt-3">
                                 <label for="passcheck" class="form-label">Confirmar contraseña:</label>
-                                <input type="password" class="form-control xl" required placeholder="Repite la contraseña" name="passcheck">
+                                <input type="password" class="form-control xl" minlength="6" required placeholder="Repite la contraseña" name="passcheck">
                             </div>
-                            <button type="submit" name="register" class="btn btn-primary mt-3 btnLeft">Registrarse</button>
+                            <button type="submit" name="register" class="btn-sm btn-primary mt-3 btnLeft">Registrarse</button>
                         </form>
                     </div>
                 </div>

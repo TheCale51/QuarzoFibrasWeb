@@ -43,7 +43,13 @@ $infocliente = $infoconsulta->fetch_assoc();
                     <img class="imgLogo" src="img/logo.gif">
                 </div>
                 <div class="col-xxl-2 col-sm-2 cart">
-                    <a href="carrito.php"><img src="img/Shopping-cart.png" width="64px" height="56px"></a>
+                <?php
+                if($_SESSION["email"] == 'cproberto026@gmail.com'){
+                    echo "<a href='carrito_adm.php'><img src='img/Shopping-cart.png' width='64px' height='56px'></a>";
+                }else{
+                    echo "<a href='carrito.php'><img src='img/Shopping-cart.png' width='64px' height='56px'></a>";
+                }
+                ?>
                 </div>
                 <div class="col-xxl-2 col-sm-2 login">
                     <?php
@@ -167,7 +173,7 @@ $infocliente = $infoconsulta->fetch_assoc();
                                         </div>-->
                                         <div class="row">
                                             <div>
-                                                <button type="submit" name="pedidoTrigger" class="btn btn-primary btnLeft">Enviar Pedido</button>
+                                                <button type="submit" name="pedidoTrigger" class="btn-sm btn-primary btnLeft">Enviar Pedido</button>
                                             </div>
                                         </div>
                                     </form>

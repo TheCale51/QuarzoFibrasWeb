@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("db.php");
+error_reporting(E_ERROR | E_PARSE);
 $consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on producto.idProducto=pedido.Producto_idProducto INNER JOIN detallesproducto on detallesproducto.idDetallesProducto=pedido.Producto_idProducto WHERE pedido.Cliente_idCliente = '$_SESSION[idcliente]';");
 ?>
 <html lang="es">
@@ -14,7 +15,7 @@ $consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on prod
         </head>
         
         <body>
-        <?php 
+            <?php 
             error_reporting(E_ERROR | E_PARSE);
             if ($_SESSION['email'] == !null)
                 echo "<div class='row navPrincipal'>";
@@ -25,7 +26,13 @@ $consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on prod
                     <img class="imgLogo" src="img/logo.gif">
                 </div>
                 <div class="col-xxl-2 col-sm-2 cart">
-                    <a href="carrito.php"><img src="img/Shopping-cart.png" width="64px" height="56px"></a>
+                <?php
+                if($_SESSION["email"] == 'cproberto026@gmail.com'){
+                    echo "<a href='carrito_adm.php'><img src='img/Shopping-cart.png' width='64px' height='56px'></a>";
+                }else{
+                    echo "<a href='carrito.php'><img src='img/Shopping-cart.png' width='64px' height='56px'></a>";
+                }
+                ?>
                 </div>
                 <div class="col-xxl-2 col-sm-2 login">
                     <?php
@@ -104,11 +111,13 @@ $consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on prod
                                     </div>
                                 </div>
                                 <div class='col-xxl-2 col-lg-3 col-sm-3 itemBtn'>
+                                    <form method='post' action='borrar_pedido.php'>
+                                    <input type='hidden' value='$col[Codigo]' name='delcodigo'></input>
                                     <div>
-                                        <button type='button' class='btn btn-primary'>Cancelar Pedido</button>
-                                        <button type='button' style='margin-top: 5px;' class='btn btn-primary'>Ver Factura</button>
+                                        <button type='submit' name='delpedido' class='btn-sm btn-primary'>Cancelar Pedido</button></form>
+                                        <button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Ver Factura</button>
                                         <h5 style='text-align: left;'><span>Estado: <span>$col[Estado]</span></span></h5>
-                                        <h5 style='text-align: left;'><span>Codigo: <span>$col[Codigo]</span></span></h5>
+                                        <h5 style='text-align: left;'><span>Codigo: <span'>$col[Codigo]</span></span></h5>
                                         <h5 style='text-align: left;'><span>Fecha: <span>$col[Fecha]</span></span></h5>
                                     </div>
                                 </div>
