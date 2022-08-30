@@ -1,29 +1,8 @@
 <?php
 session_start();
 include("db.php");
-error_reporting(E_ERROR | E_PARSE);
-$estado = $_GET['est'];
-
-if ($estado == 1){
-    $estado = "En Espera";
-}elseif ($estado == 2){
-    $estado = "Enviado";
-}elseif ($estado == 3){
-    $estado = "Entregado";
-}else{
-    $estado= "";
-}
-$cod = $_GET['cod'];
-
-if (strlen($estado) > 0){
-    $consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on producto.idProducto=pedido.Producto_idProducto INNER JOIN detallesproducto on detallesproducto.idDetallesProducto=pedido.Producto_idProducto WHERE pedido.Estado = '$estado';");
-}elseif (strlen($cod) >= 9){
-    $consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on producto.idProducto=pedido.Producto_idProducto INNER JOIN detallesproducto on detallesproducto.idDetallesProducto=pedido.Producto_idProducto WHERE pedido.Codigo = '$cod';");
-}else{
-    $consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on producto.idProducto=pedido.Producto_idProducto INNER JOIN detallesproducto on detallesproducto.idDetallesProducto=pedido.Producto_idProducto;");
-}
-
 ?>
+
 <html lang="es">
     <head>
         <title>QuarzoFibras</title>
@@ -33,15 +12,15 @@ if (strlen($estado) > 0){
         <link rel="stylesheet" href="lib/bootstrap-5/css/bootstrap.css" />
         <script src="lib/bootstrap-5/js/bootstrap.js" ></script>
         </head>
-
+        
         <body>
-            <?php 
-                error_reporting(E_ERROR | E_PARSE);
-                if ($_SESSION['email'] == !null)
-                    echo "<div class='row navPrincipal'>";
-                else
-                echo "<div class='row navPrincipalNoLogged'>";
-                ?>
+        <?php 
+            error_reporting(E_ERROR | E_PARSE);
+            if ($_SESSION['email'] == !null)
+                echo "<div class='row navPrincipal'>";
+            else
+            echo "<div class='row navPrincipalNoLogged'>";
+            ?>
                 <div class="col-xxl-6 col-sm-6 logo">
                     <img class="imgLogo" src="img/logo.gif">
                 </div>
@@ -100,7 +79,7 @@ if (strlen($estado) > 0){
                                     <li><a class="dropdown-item text-white" href="cat_tinas.php">Tinas</a></li>
                                     <li><a class="dropdown-item text-white" href="cat_piscinas.php">Piscinas</a></li>
                                     <li><a class="dropdown-item text-white" href="cat_stands.php">Stands</a></li>
-                                    <li><a class="dropdown-item text-white" href="cat_barras.php">Barras</a></li>
+                                    <li><a class="dropdown-item text-white" href="cat_cocinas.php">Cocinas</a></li>
                                     <li><a class="dropdown-item text-white" href="cat_lavaderos.php">Lavaderos</a></li>
                                     <li><a class="dropdown-item text-white" href="cat_lavamanos.php">Lavamanos</a></li>
                                 </ul>
@@ -113,53 +92,7 @@ if (strlen($estado) > 0){
                     </nav>
 
             <div id="bodyPrincipal" class="row">
-                <div class="col-xxl-12 col-sm-12">
-                    <div>
-                        <h1 style="text-align: center;"><span>Carrito de Compras</span></h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xxl-12 bodyContainerCart">
-                        <div class="col-xxl-12 containerCart">
-                            <form method="post" action="filtrar_pedido.php">
-                                <select name="estado">
-                                    <option value="">Seleccionar Estado</option>
-                                    <option value="1">En Espera</option>
-                                    <option value="2">Enviado</option>
-                                    <option value="3">Entregado</option>
-                                </select>
-                                <input type="tel" name="cod" minlength="9" maxlength="13" placeholder="Codigo"/>
-                                <button type="submit" name="filtrar" class="btn-sm btn-primary">Filtrar</button>
-                            </form>
-                            <?php
-                            if ($_SESSION["email"] == "cproberto026@gmail.com"){
-                                while($col=$consulta->fetch_assoc()){
-                                    echo "<div class='row itemCart'>
-                                    <div class='col-xxl-3 col-lg-4 col-sm-4 itemHead'>
-                                        <div>
-                                            <h2 style='text-align: left;'><span>$col[Nombre_Producto]</span></h2>
-                                            <a href='perfil_adm.php?id=$col[Cliente_idCliente]'><button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Perfil Cliente</button></a>
-                                        </div>
-                                    </div>
-                                    <div class='col-xxl-2 col-lg-3 col-sm-3'>
-                                        <form method='post' action='borrar_pedido.php'>
-                                        <input type='hidden' value='$col[Codigo]' name='delcodigo'></input>
-                                        <div>
-                                            <button type='submit' name='delpedido' class='btn-sm btn-primary'>Cancelar Pedido</button></form>
-                                            <button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Ver Factura</button>
-                                            <h5 style='text-align: left;'><span>Estado: <span>$col[Estado]</span></span></h5>
-                                            <h5 style='text-align: left;'><span>Codigo: <span'>$col[Codigo]</span></span></h5>
-                                            <h5 style='text-align: left;'><span>Fecha: <span>$col[Fecha]</span></span></h5>
-                                        </div>
-                                    </div>
-                                </div>";
-                                }
-                            }else{
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </body>
 

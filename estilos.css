@@ -258,3 +258,30 @@ h1{
     padding-left: 1rem;
     font-size: 20px;
 }
+
+table, tr > th, tr > td{
+    border: 1px solid;
+}
+
+tr > th{
+    padding: 0rem 0.3rem;
+}
+tr > td{
+    padding: 0.5rem;
+}
+
+.bodyContainerClient{
+    padding-left: 15% !important;
+    padding-right: 15% !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.bodyFormClient{
+    border:3px solid #000;
+    border-radius: 5px;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+    padding-bottom: 15px !important;
+    padding-top: 15px !important;
+}

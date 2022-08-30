@@ -1,29 +1,11 @@
 <?php
 session_start();
 include("db.php");
-error_reporting(E_ERROR | E_PARSE);
-$estado = $_GET['est'];
-
-if ($estado == 1){
-    $estado = "En Espera";
-}elseif ($estado == 2){
-    $estado = "Enviado";
-}elseif ($estado == 3){
-    $estado = "Entregado";
-}else{
-    $estado= "";
-}
-$cod = $_GET['cod'];
-
-if (strlen($estado) > 0){
-    $consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on producto.idProducto=pedido.Producto_idProducto INNER JOIN detallesproducto on detallesproducto.idDetallesProducto=pedido.Producto_idProducto WHERE pedido.Estado = '$estado';");
-}elseif (strlen($cod) >= 9){
-    $consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on producto.idProducto=pedido.Producto_idProducto INNER JOIN detallesproducto on detallesproducto.idDetallesProducto=pedido.Producto_idProducto WHERE pedido.Codigo = '$cod';");
-}else{
-    $consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on producto.idProducto=pedido.Producto_idProducto INNER JOIN detallesproducto on detallesproducto.idDetallesProducto=pedido.Producto_idProducto;");
-}
-
+$id=$_GET['id'];
+$infoconsulta = $conexion->query("SELECT `Nombres`,`Apellidos`,celular.Celular1, celular.Celular2, telefono.Telefono1, telefono.Telefono2, `Direccion`,`Barrio`, municipio.Municipio, departamento.Departamento FROM `cliente` INNER JOIN celular on cliente.idCliente=celular.idCelular INNER JOIN telefono on cliente.idCliente=telefono.idTelefono INNER JOIN municipio on municipio.idMunicipio=cliente.Municipio_idMunicipio INNER JOIN departamento on departamento.idDepartamento=municipio.Departamento_idDepartamento WHERE cliente.idCliente=$id");
+$infocliente = $infoconsulta->fetch_assoc();
 ?>
+
 <html lang="es">
     <head>
         <title>QuarzoFibras</title>
@@ -33,14 +15,14 @@ if (strlen($estado) > 0){
         <link rel="stylesheet" href="lib/bootstrap-5/css/bootstrap.css" />
         <script src="lib/bootstrap-5/js/bootstrap.js" ></script>
         </head>
-
+        
         <body>
             <?php 
                 error_reporting(E_ERROR | E_PARSE);
                 if ($_SESSION['email'] == !null)
                     echo "<div class='row navPrincipal'>";
                 else
-                echo "<div class='row navPrincipalNoLogged'>";
+                    echo "<div class='row navPrincipalNoLogged'>";
                 ?>
                 <div class="col-xxl-6 col-sm-6 logo">
                     <img class="imgLogo" src="img/logo.gif">
@@ -100,7 +82,7 @@ if (strlen($estado) > 0){
                                     <li><a class="dropdown-item text-white" href="cat_tinas.php">Tinas</a></li>
                                     <li><a class="dropdown-item text-white" href="cat_piscinas.php">Piscinas</a></li>
                                     <li><a class="dropdown-item text-white" href="cat_stands.php">Stands</a></li>
-                                    <li><a class="dropdown-item text-white" href="cat_barras.php">Barras</a></li>
+                                    <li><a class="dropdown-item text-white" href="cat_cocinas.php">Cocinas</a></li>
                                     <li><a class="dropdown-item text-white" href="cat_lavaderos.php">Lavaderos</a></li>
                                     <li><a class="dropdown-item text-white" href="cat_lavamanos.php">Lavamanos</a></li>
                                 </ul>
@@ -114,50 +96,30 @@ if (strlen($estado) > 0){
 
             <div id="bodyPrincipal" class="row">
                 <div class="col-xxl-12 col-sm-12">
-                    <div>
-                        <h1 style="text-align: center;"><span>Carrito de Compras</span></h1>
-                    </div>
+                    <p class="CatTitulo">Datos del Cliente</p>
                 </div>
-                <div class="row">
-                    <div class="col-xxl-12 bodyContainerCart">
-                        <div class="col-xxl-12 containerCart">
-                            <form method="post" action="filtrar_pedido.php">
-                                <select name="estado">
-                                    <option value="">Seleccionar Estado</option>
-                                    <option value="1">En Espera</option>
-                                    <option value="2">Enviado</option>
-                                    <option value="3">Entregado</option>
-                                </select>
-                                <input type="tel" name="cod" minlength="9" maxlength="13" placeholder="Codigo"/>
-                                <button type="submit" name="filtrar" class="btn-sm btn-primary">Filtrar</button>
-                            </form>
-                            <?php
-                            if ($_SESSION["email"] == "cproberto026@gmail.com"){
-                                while($col=$consulta->fetch_assoc()){
-                                    echo "<div class='row itemCart'>
-                                    <div class='col-xxl-3 col-lg-4 col-sm-4 itemHead'>
-                                        <div>
-                                            <h2 style='text-align: left;'><span>$col[Nombre_Producto]</span></h2>
-                                            <a href='perfil_adm.php?id=$col[Cliente_idCliente]'><button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Perfil Cliente</button></a>
-                                        </div>
-                                    </div>
-                                    <div class='col-xxl-2 col-lg-3 col-sm-3'>
-                                        <form method='post' action='borrar_pedido.php'>
-                                        <input type='hidden' value='$col[Codigo]' name='delcodigo'></input>
-                                        <div>
-                                            <button type='submit' name='delpedido' class='btn-sm btn-primary'>Cancelar Pedido</button></form>
-                                            <button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Ver Factura</button>
-                                            <h5 style='text-align: left;'><span>Estado: <span>$col[Estado]</span></span></h5>
-                                            <h5 style='text-align: left;'><span>Codigo: <span'>$col[Codigo]</span></span></h5>
-                                            <h5 style='text-align: left;'><span>Fecha: <span>$col[Fecha]</span></span></h5>
-                                        </div>
-                                    </div>
-                                </div>";
-                                }
-                            }else{
-                            }
-                            ?>
-                        </div>
+                <div class="col-xxl-12 col-sm-12 bodyContainerClient">
+                    <div class="col-xxl-12 col-sm-12 bodyFormClient">
+                        <table>
+                        <tr>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Celulares</th>
+                            <th>Telefonos</th>
+                            <th>Departamento</th>
+                            <th>Ciudad</th>
+                            <th>Direccion</th>
+                        </tr>
+                        <tr>
+                            <td><?php echo "$infocliente[Nombres]" ?></td>
+                            <td><?php echo "$infocliente[Apellidos]" ?></td>
+                            <td><?php echo nl2br("$infocliente[Celular1]\n$infocliente[Celular2]") ?></td>
+                            <td><?php echo nl2br("$infocliente[Telefono1]\n$infocliente[Telefono2]") ?></td>
+                            <td><?php echo "$infocliente[Departamento]" ?></td>
+                            <td><?php echo "$infocliente[Municipio]" ?></td>
+                            <td><?php echo "$infocliente[Direccion] $infocliente[Barrio]" ?></td>
+                        </tr>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -32,13 +32,13 @@ $infocliente = $infoconsulta->fetch_assoc();
         </head>
         
         <body>
-        <?php 
-            error_reporting(E_ERROR | E_PARSE);
-            if ($_SESSION['email'] == !null)
+            <?php 
+                error_reporting(E_ERROR | E_PARSE);
+                if ($_SESSION['email'] == !null)
                 echo "<div class='row navPrincipal'>";
-            else
-            echo "<div class='row navPrincipalNoLogged'>";
-            ?>
+                else
+                echo "<div class='row navPrincipalNoLogged'>";
+                ?>
                 <div class="col-xxl-6 col-sm-6 logo">
                     <img class="imgLogo" src="img/logo.gif">
                 </div>
