@@ -139,10 +139,9 @@ if (strlen($estado) > 0) {
                                     <div class='col-xxl-3 col-lg-4 col-sm-4 itemHead'>
                                         <div>
                                             <h2 style='text-align: left;'><span>$col[Nombre_Producto]</span></h2>
-                                            <a href='perfil_adm.php?id=$col[Cliente_idCliente]'><button type='button' style='margin-top: 5px;display: block;' class='btn-sm btn-primary'>Perfil Cliente</button></a>
-                                            <a href='actualizar_estado.php?id=$col[idPedido]&est=1'><button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>En Espera</button></a>
-                                            <a href='actualizar_estado.php?id=$col[idPedido]&est=2'><button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Enviado</button></a>
-                                            <a href='actualizar_estado.php?id=$col[idPedido]&est=3'><button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Entregado</button></a>
+                                            <a href='perfil_adm.php?id=$col[Cliente_idCliente]'><button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Perfil Cliente</button></a>
+                                            <button form='formEst$col[idPedido]' type='submit' name='submitEst' class='btn-sm btn-primary'>Actualizar Estado</button>
+                                            <input form='formEst$col[idPedido]' type='hidden' value='$col[idPedido]' name='idPedido'></input>
                                         </div>
                                     </div>
                                     <div class='col-xxl-2 col-lg-3 col-sm-3'>
@@ -153,13 +152,13 @@ if (strlen($estado) > 0) {
                                         <div>
                                             <button form='dPedido' type='submit' name='delpedido' class='btn-sm btn-primary'>Cancelar Pedido</button>
                                             <button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Ver Factura</button>
-                                            <h5 style='text-align: left;'><span>Estado: <span>$col[Estado]</span></span></h5>
+                                            <h5 style='text-align: left;'><span>Estado:</span><form id='formEst$col[idPedido]' method='post' action='actualizar_estado.php'><select name='pEstado'><option value=''>Actual: $col[Estado]</option> <option value='En Espera'>En Espera</option> <option value='Enviado'>Enviado</option> <option value='Entregado'>Entregado</option> </select></form></h5>
                                             <h5 style='text-align: left;'><span>Codigo: <span'>$col[Codigo]</span></span></h5>
                                             <h5 style='text-align: left;'><span>Fecha: <span>$col[Fecha]</span></span></h5>
                                         </div>
                                     </div>
                                 </div>";
-                    } ?>
+                    }?>
                 </div>
             </div>
         </div>

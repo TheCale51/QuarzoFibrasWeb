@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2022 at 11:13 PM
+-- Generation Time: Sep 01, 2022 at 03:12 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -80,6 +80,13 @@ CREATE TABLE `cliente` (
   `Barrio` varchar(20) NOT NULL,
   `Contraseña` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cliente`
+--
+
+INSERT INTO `cliente` (`idCliente`, `Municipio_idMunicipio`, `Telefono_idTelefono`, `Celular_idCelular`, `Correo`, `Direccion`, `Nombres`, `Apellidos`, `Fecha_Nacimiento`, `Barrio`, `Contraseña`) VALUES
+(1, 886, 1, 1, 'cproberto026@gmail.com', 'Calle 13C', 'Carlos', 'Plazas Rey', '2003-03-21', 'Ciudadela Villamil', '123456');
 
 -- --------------------------------------------------------
 
@@ -1427,7 +1434,7 @@ ALTER TABLE `celular`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `departamento`
