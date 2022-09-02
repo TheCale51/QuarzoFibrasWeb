@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2022 at 03:12 AM
+-- Generation Time: Sep 02, 2022 at 03:17 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -60,6 +60,13 @@ CREATE TABLE `celular` (
   `Celular1` varchar(10) DEFAULT NULL,
   `Celular2` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `celular`
+--
+
+INSERT INTO `celular` (`idCelular`, `Celular1`, `Celular2`) VALUES
+(1, '3022225582', '3022225585');
 
 -- --------------------------------------------------------
 
@@ -161,7 +168,72 @@ CREATE TABLE `detallesproducto` (
 --
 
 INSERT INTO `detallesproducto` (`idDetallesProducto`, `Categoria_idCategoria`, `Material`, `Medidas`, `Valor`, `Nombre_Producto`, `Descripcion`, `Img`) VALUES
-(1, 1, NULL, NULL, 1000000, 'Muebles para la Alcoba', 'Juego de alcoba con muebles y mesa pequeña con vidrio', 'img/Alcobas-1.jpg');
+(1, 1, NULL, NULL, 1000000, 'Muebles para la Alcoba', 'Juego de alcoba con muebles y mesa pequeña con vidrio', 'img/Alcobas-1.jpg'),
+(2, 1, NULL, NULL, 1500000, 'Cama para Alcoba', 'Cama matrimonial de madera oscura', 'img/Alcobas-2.jpg'),
+(3, 1, NULL, NULL, 1200000, 'Cama para Alcoba', 'Cama sencilla de madera oscura', 'img/Alcobas-3.jpg'),
+(4, 1, NULL, NULL, 1300000, 'Cama para Alcoba', 'Cama doble de madera marrón', 'img/Alcobas-4.jpg'),
+(5, 1, NULL, NULL, 1400000, 'Cama para Alcoba', 'Cama doble con mesa de noche de madera de roble', 'img/Alcobas-5.jpg'),
+(6, 1, NULL, NULL, 1400000, 'Cama para Alcoba', 'Cama doble sencilla de madera maple', 'img/Alcobas-6.jpg'),
+(7, 2, NULL, NULL, 600000, 'Baño', 'Lavamanos para baño con gabinetes', 'img/Baños-1.jpg'),
+(8, 2, NULL, NULL, 500000, 'Baño', 'Lavamanos de cuarzo oscuro con gabinete', 'img/Baños-2.jpg'),
+(9, 2, NULL, NULL, 700000, 'Baño', 'Dos lavamanos para baño con gabinetes', 'img/Baños-3.jpg'),
+(10, 2, NULL, NULL, 700000, 'Baño', 'Cisterna y gabinete de cuarzo', 'img/Baños-4.jpg'),
+(11, 2, NULL, NULL, 500000, 'Baño', 'Lavamanos con gabinete sencillo', 'img/Baños-5.jpg'),
+(12, 2, NULL, NULL, 500000, 'Baño', '2 Lavamanos sencillos', 'img/Baños-6.jpg'),
+(13, 3, NULL, NULL, 200000, 'Barra para baño', 'Barra pequeña para baño', 'img/Barras-1.jpg'),
+(14, 3, NULL, NULL, 300000, 'Barra', 'Barra gris para cocina', 'img/Barras-2.jpg'),
+(15, 3, NULL, NULL, 200000, 'Barra', 'Barra blanca para cocina', 'img/Barras-3.jpg'),
+(16, 3, NULL, NULL, 300000, 'Barra', 'Barra negra pequeña', 'img/Barras-4.jpg'),
+(17, 3, NULL, NULL, 400000, 'Barra', 'Barra negra larga', 'img/Barras-5.jpg'),
+(18, 3, NULL, NULL, 200000, 'Barra', 'Barra negra pequeña', 'img/Barras-6.jpg'),
+(19, 4, NULL, NULL, 500000, 'Closet', 'Closet triple', 'img/Closets-1.jpg'),
+(20, 4, NULL, NULL, 500000, 'Closet', 'Closet de madera clara', 'img/Closets-2.jpg'),
+(21, 4, NULL, NULL, 600000, 'Closet', 'Closet de varios compartimientos negro', 'img/Closets-3.jpg'),
+(22, 4, NULL, NULL, 900000, 'Closet', 'Closet doble ', 'img/Closets-4.jpg'),
+(23, 4, NULL, NULL, 500000, 'Closet', 'Closet sencillo', 'img/Closets-5.jpg'),
+(24, 4, NULL, NULL, 1000000, 'Closet', 'Closet triple', 'img/Closets-6.jpg'),
+(25, 5, NULL, NULL, 700000, 'Jacuzzi', 'Jacuzzi mediano', 'img/Jacuzzi-1.jpg'),
+(26, 5, NULL, NULL, 900000, 'Jacuzzi', 'Jacuzzi doble', 'img/Jacuzzi-2.jpg'),
+(27, 5, NULL, NULL, 600000, 'Jacuzzi', 'Jacuzzi cuadrado con bordes de madera', 'img/Jacuzzi-3.jpg'),
+(28, 5, NULL, NULL, 500000, 'Jacuzzi', 'Jacuzzi pequeño', 'img/Jacuzzi-4.jpg'),
+(29, 5, NULL, NULL, 500000, 'Jacuzzi', 'Jacuzzi pequeño', 'img/Jacuzzi-5.jpg'),
+(30, 5, NULL, NULL, 600000, 'Jacuzzi', 'Jacuzzi con forma de corazón', 'img/Jacuzzi-6.jpg'),
+(31, 6, NULL, NULL, 400000, 'Tina', 'Tina', 'img/Tinas-1.jpg'),
+(32, 6, NULL, NULL, 200000, 'Tina', 'Tina', 'img/Tinas-2.jpg'),
+(33, 6, NULL, NULL, 200000, 'Tina', 'Tina', 'img/Tinas-3.jpg'),
+(34, 6, NULL, NULL, 300000, 'Tina', 'Tina', 'img/Tinas-4.jpg'),
+(35, 6, NULL, NULL, 200000, 'Tina', 'Tina', 'img/Tinas-5.jpg'),
+(36, 6, NULL, NULL, 200000, 'Tina', 'Tina', 'img/Tinas-6.jpg'),
+(37, 7, NULL, NULL, 1500000, 'Piscina', 'Piscina', 'img/Piscinas-1.jpg'),
+(38, 7, NULL, NULL, 1000000, 'Piscina', 'Piscina', 'img/Piscinas-2.jpg'),
+(39, 7, NULL, NULL, 1500000, 'Piscina', 'Piscina', 'img/Piscinas-3.jpg'),
+(40, 7, NULL, NULL, 1200000, 'Piscina', 'Piscina', 'img/Piscinas-4.jpg'),
+(41, 7, NULL, NULL, 2000000, 'Piscina', 'Piscina', 'img/Piscinas-5.jpg'),
+(42, 7, NULL, NULL, 2000000, 'Piscina', 'Piscina', 'img/Piscinas-6.jpg'),
+(43, 8, NULL, NULL, 800000, 'Stand', 'Stand', 'img/Stands-1.jpg'),
+(44, 8, NULL, NULL, 800000, 'Stand', 'Stand', 'img/Stands-2.jpg'),
+(45, 8, NULL, NULL, 800000, 'Stand', 'Stand', 'img/Stands-3.jpg'),
+(46, 8, NULL, NULL, 800000, 'Stand', 'Stand', 'img/Stands-4.jpg'),
+(47, 8, NULL, NULL, 800000, 'Stand', 'Stand', 'img/Stands-5.jpg'),
+(48, 8, NULL, NULL, 800000, 'Stand', 'Stand', 'img/Stands-6.jpg'),
+(49, 9, NULL, NULL, 1200000, 'Cocina', 'Cocina', 'img/Cocinas-1.jpg'),
+(50, 9, NULL, NULL, 1200000, 'Cocina', 'Cocina', 'img/Cocinas-2.jpg'),
+(51, 9, NULL, NULL, 1200000, 'Cocina', 'Cocina', 'img/Cocinas-3.jpg'),
+(52, 9, NULL, NULL, 1200000, 'Cocina', 'Cocina', 'img/Cocinas-4.jpg'),
+(53, 9, NULL, NULL, 1200000, 'Cocina', 'Cocina', 'img/Cocinas-5.jpg'),
+(54, 9, NULL, NULL, 1200000, 'Cocina', 'Cocina', 'img/Cocinas-6.jpg'),
+(55, 10, NULL, NULL, 400000, 'Lavadero', 'Lavadero', 'img/Lavaderos-1.jpg'),
+(56, 10, NULL, NULL, 400000, 'Lavadero', 'Lavadero', 'img/Lavaderos-2.jpg'),
+(57, 10, NULL, NULL, 400000, 'Lavadero', 'Lavadero', 'img/Lavaderos-3.jpg'),
+(58, 10, NULL, NULL, 400000, 'Lavadero', 'Lavadero', 'img/Lavaderos-4.jpg'),
+(59, 10, NULL, NULL, 400000, 'Lavadero', 'Lavadero', 'img/Lavaderos-5.jpg'),
+(60, 10, NULL, NULL, 400000, 'Lavadero', 'Lavadero', 'img/Lavaderos-6.jpg'),
+(61, 11, NULL, NULL, 300000, 'Lavamano', 'Lavamano', 'img/Lavamanos-1.jpg'),
+(62, 11, NULL, NULL, 300000, 'Lavamano', 'Lavamano', 'img/Lavamanos-2.jpg'),
+(63, 11, NULL, NULL, 300000, 'Lavamano', 'Lavamano', 'img/Lavamanos-3.jpg'),
+(64, 11, NULL, NULL, 300000, 'Lavamano', 'Lavamano', 'img/Lavamanos-4.jpg'),
+(65, 11, NULL, NULL, 300000, 'Lavamano', 'Lavamano', 'img/Lavamanos-5.jpg'),
+(66, 11, NULL, NULL, 300000, 'Lavamano', 'Lavamano', 'img/Lavamanos-6.jpg');
 
 -- --------------------------------------------------------
 
@@ -1340,7 +1412,72 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idProducto`, `DetallesProducto_idDetallesProducto`, `Cod_Producto`) VALUES
-(1, 1, '001');
+(1, 1, '001'),
+(2, 2, '002'),
+(3, 3, '003'),
+(4, 4, '004'),
+(5, 5, '005'),
+(6, 6, '006'),
+(7, 7, '007'),
+(8, 8, '008'),
+(9, 9, '009'),
+(10, 10, '010'),
+(11, 11, '011'),
+(12, 12, '012'),
+(13, 13, '013'),
+(14, 14, '014'),
+(15, 15, '015'),
+(16, 16, '016'),
+(17, 17, '017'),
+(18, 18, '018'),
+(19, 19, '019'),
+(20, 20, '020'),
+(21, 21, '021'),
+(22, 22, '022'),
+(23, 23, '023'),
+(24, 24, '024'),
+(25, 25, '025'),
+(26, 26, '026'),
+(27, 27, '027'),
+(28, 28, '028'),
+(29, 29, '029'),
+(30, 30, '030'),
+(31, 31, '031'),
+(32, 32, '032'),
+(33, 33, '033'),
+(34, 34, '034'),
+(35, 35, '035'),
+(36, 36, '036'),
+(37, 37, '037'),
+(38, 38, '038'),
+(39, 39, '039'),
+(40, 40, '040'),
+(41, 41, '041'),
+(42, 42, '042'),
+(43, 43, '043'),
+(44, 44, '044'),
+(45, 45, '045'),
+(46, 46, '046'),
+(47, 47, '047'),
+(48, 48, '048'),
+(49, 49, '049'),
+(50, 50, '050'),
+(51, 51, '051'),
+(52, 52, '052'),
+(53, 53, '053'),
+(54, 54, '054'),
+(55, 55, '055'),
+(56, 56, '056'),
+(57, 57, '057'),
+(58, 58, '058'),
+(59, 59, '059'),
+(60, 60, '060'),
+(61, 61, '061'),
+(62, 62, '062'),
+(63, 63, '063'),
+(64, 64, '064'),
+(65, 65, '065'),
+(66, 66, '066');
 
 -- --------------------------------------------------------
 
@@ -1353,6 +1490,13 @@ CREATE TABLE `telefono` (
   `Telefono1` varchar(7) DEFAULT NULL,
   `Telefono2` varchar(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `telefono`
+--
+
+INSERT INTO `telefono` (`idTelefono`, `Telefono1`, `Telefono2`) VALUES
+(1, '6591713', '6591713');
 
 --
 -- Indexes for dumped tables
@@ -1428,7 +1572,7 @@ ALTER TABLE `telefono`
 -- AUTO_INCREMENT for table `celular`
 --
 ALTER TABLE `celular`
-  MODIFY `idCelular` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCelular` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cliente`
@@ -1446,7 +1590,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT for table `detallesproducto`
 --
 ALTER TABLE `detallesproducto`
-  MODIFY `idDetallesProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idDetallesProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `municipio`
@@ -1461,10 +1605,16 @@ ALTER TABLE `pedido`
   MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
 -- AUTO_INCREMENT for table `telefono`
 --
 ALTER TABLE `telefono`
-  MODIFY `idTelefono` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTelefono` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
