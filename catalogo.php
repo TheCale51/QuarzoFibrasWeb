@@ -1,10 +1,12 @@
 <?php
 session_start();
 include("db.php");
-@$productid = $_GET["id"];
-$consulta = $conexion->query("SELECT * FROM `detallesproducto` WHERE `idDetallesProducto` ='$productid'");
-$col = $consulta->fetch_assoc();
 
+$catid = $_GET['cat'];
+$consulta1 = $conexion->query("SELECT `idDetallesProducto`, `Img`, `Nombre_Categoria` FROM `detallesproducto` INNER JOIN categoria on categoria.idCategoria=detallesproducto.Categoria_idCategoria WHERE Categoria_idCategoria=$catid ORDER BY `idDetallesProducto` ASC LIMIT 3;");
+$consulta2 = $conexion->query("SELECT `idDetallesProducto`, `Img`, `Nombre_Categoria` FROM `detallesproducto` INNER JOIN categoria on categoria.idCategoria=detallesproducto.Categoria_idCategoria WHERE Categoria_idCategoria=$catid ORDER BY `idDetallesProducto` DESC LIMIT 3;");
+$consulta = $conexion->query("SELECT `Nombre_Categoria` FROM `categoria` WHERE idCategoria=$catid;");
+$ncat = $consulta->fetch_assoc();
 ?>
 <html lang="es">
 
@@ -73,7 +75,7 @@ $col = $consulta->fetch_assoc();
                     <a class="nav-link" href="principal.php">Inicio</a>
                 </li>
                 <li class="nav-item dropdown navCat">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Catálogo de Productos</a>
+                    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#">Catálogo de Productos</a>
                     <ul class="dropdown-menu bg-dark">
                         <li><a class="dropdown-item text-white" href="catalogo.php?cat=1">Alcobas</a></li>
                         <li><a class="dropdown-item text-white" href="catalogo.php?cat=2">Baños</a></li>
@@ -94,36 +96,23 @@ $col = $consulta->fetch_assoc();
             </ul>
         </div>
     </nav>
-
-    <div id="bodyPrincipal" class="row">
-        <div class="col-xxl-12 bodyContainerProducto">
-            <div class="col-xxl-12">
-                <?php
-                echo "<h1 style='text-align: left;'><span>$col[Nombre_Producto]</span></h1>";
-                ?>
-            </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <?php
+            echo "<p class='CatTitulo'>$ncat[Nombre_Categoria]</p>"
+            ?>
         </div>
-        <div class="col-xxl-12 bodyContainerProducto">
-            <div class="row">
-                <div class="col-xxl-4 col-lg-4 col-sm-12">
-                    <?php echo "<img src='$col[Img]' width='70%'>" ?>
-                </div>
-                <div class="col-xxl-8 col-lg-8 col-sm-12">
-                    <?php
-                    echo "<p style='word-wrap: break-word;font-size: 25px;'>$col[Descripcion]</p>";
-                    echo "<p style='font-size: 25px;'>Precio Base: $$col[Valor]</p>";
-                    ?>
-                </div>
-                <div class="col-xxl-12 col-sm-12">
-                    <?php if ($_SESSION['idcliente'] != null) {
-                        echo "<a href='frm_pedido.php?id=$productid'><button type='button' class='btn-sm btn-primary mt-3'>Comprar Producto</button></a>";
-                    } else {
-                        echo "<a href='frm_login.php'><button type='button' class='btn-sm btn-primary mt-3'>Comprar Producto</button></a>";
-                        echo "<span class='txtWarning'>Primero necesita estar registrado para hacer el pedido</span>";
-                    }
-                    ?>
-                </div>
-            </div>
+        <div class="col-sm-6 imgcat">
+            <?php
+            while ($cat = $consulta1->fetch_assoc()) {
+                echo "<a href='vista_producto.php?id=$cat[idDetallesProducto]'><img src='$cat[Img]'></a>";
+            } ?>
+        </div>
+        <div class="col-sm-6 imgcat">
+            <?php
+            while ($cat = $consulta2->fetch_assoc()) {
+                echo "<a href='vista_producto.php?id=$cat[idDetallesProducto]'><img src='$cat[Img]'></a>";
+            } ?>
         </div>
     </div>
 </body>

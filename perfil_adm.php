@@ -76,17 +76,17 @@ $infocliente = $infoconsulta->fetch_assoc();
                 <li class="nav-item dropdown navCat">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Catálogo de Productos</a>
                     <ul class="dropdown-menu bg-dark">
-                        <li><a class="dropdown-item text-white" href="cat_alcobas.php">Alcobas</a></li>
-                        <li><a class="dropdown-item text-white" href="cat_baños.php">Baños</a></li>
-                        <li><a class="dropdown-item text-white" href="cat_barras.php">Barras</a></li>
-                        <li><a class="dropdown-item text-white" href="cat_closets.php">Closets</a></li>
-                        <li><a class="dropdown-item text-white" href="cat_jacuzzis.php">Jacuzzis</a></li>
-                        <li><a class="dropdown-item text-white" href="cat_tinas.php">Tinas</a></li>
-                        <li><a class="dropdown-item text-white" href="cat_piscinas.php">Piscinas</a></li>
-                        <li><a class="dropdown-item text-white" href="cat_stands.php">Stands</a></li>
-                        <li><a class="dropdown-item text-white" href="cat_cocinas.php">Cocinas</a></li>
-                        <li><a class="dropdown-item text-white" href="cat_lavaderos.php">Lavaderos</a></li>
-                        <li><a class="dropdown-item text-white" href="cat_lavamanos.php">Lavamanos</a></li>
+                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=1">Alcobas</a></li>
+                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=2">Baños</a></li>
+                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=3">Barras</a></li>
+                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=4">Closets</a></li>
+                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=5">Jacuzzis</a></li>
+                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=6">Tinas</a></li>
+                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=7">Piscinas</a></li>
+                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=8">Stands</a></li>
+                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=9">Cocinas</a></li>
+                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=10">Lavaderos</a></li>
+                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=11">Lavamanos</a></li>
                     </ul>
                 </li>
                 <li class="nav-item navAbout">
