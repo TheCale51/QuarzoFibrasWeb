@@ -65,7 +65,7 @@ img{
     height: auto;
 }
 .img-principal-1{
-    border: 3px solid #000;
+    border: 5px solid #ddd;
     border-radius: 5px;
     width: 350px;
     margin-top: 15%;
@@ -73,10 +73,10 @@ img{
     margin-left: 10%;
 }
 .img-principal-2{
-    border: 3px solid #000;
+    border: 5px solid #ddd;
     border-radius: 5px;
     width: 350px;
-    height: 256;
+    height: 256px;
     margin-top: 15%;
     margin-left: 10%;
 }
@@ -112,11 +112,15 @@ img{
 .imgcat > a > img{
     width: 50%;
     margin: 50px 0px 25px 50px;
-}
+    /*border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;*/
 
-.imgcat > img{
-    width: 50%;
-    margin: 50px 0px 25px 50px;
+    border: 10px solid #fff;
+    border-bottom: 45px solid #fff;
+    -webkit-box-shadow: 20px 15px 13px 6px #777;
+       -moz-box-shadow: 20px 15px 13px 6px #777;
+            box-shadow: 20px 15px 13px 6px #777;
 }
 
 .CatTitulo{

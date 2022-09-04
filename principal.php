@@ -93,7 +93,7 @@ include("db.php");
     </nav>
 
     <div id="bodyPrincipal" class="row">
-        <div class="col-xxl-4 col-xl-4 col-sm-12">
+        <div class="col-xxl-4 col-xl-4 col-sm-12 imgP">
             <img class="img-principal-1" src="img/imagen-principal-1.jpg">
         </div>
         <div class="col-xxl-4 col-xl-4 col-sm-12  txtPrincipal">
@@ -102,7 +102,7 @@ include("db.php");
             <p>Elegancia, sencillez y tecnología a la vanguardia para las nuevas bañeras de hidromasaje</p>
             <p>Jacuzzis, tinas y piscinas</p>
         </div>
-        <div class="col-xxl-4 col-xl-4 col-sm-12">
+        <div class="col-xxl-4 col-xl-4 col-sm-12 imgP">
             <img class="img-principal-2" src="img/imagen-principal-2.jpg">
         </div>
     </div>
