@@ -1,6 +1,20 @@
 <?php
 session_start();
 include("db.php");
+
+@$getid = $_GET['d'];
+
+$depa = "SELECT DISTINCT Departamento, idDepartamento FROM departamento ORDER BY Departamento";
+$muni = "SELECT Municipio FROM municipio ORDER BY Municipio";
+
+$infoconsulta = $conexion->query("SELECT `Nombres`,`Apellidos`,celular.Celular1, celular.Celular2, telefono.Telefono1, telefono.Telefono2, `Direccion`,`Barrio`, municipio.Municipio, departamento.Departamento, Contraseña, municipio.idMunicipio, departamento.idDepartamento
+FROM `cliente` 
+INNER JOIN celular on cliente.idCliente=celular.idCelular 
+INNER JOIN telefono on cliente.idCliente=telefono.idTelefono 
+INNER JOIN municipio on municipio.idMunicipio=cliente.Municipio_idMunicipio 
+INNER JOIN departamento on departamento.idDepartamento=municipio.Departamento_idDepartamento 
+WHERE cliente.idCliente=$_SESSION[idcliente]");
+$infocliente = $infoconsulta->fetch_assoc();
 ?>
 
 <html lang="es">
@@ -12,6 +26,24 @@ include("db.php");
     <script src="lib/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="lib/bootstrap-5/css/bootstrap.css" />
     <script src="lib/bootstrap-5/js/bootstrap.js"></script>
+
+    <script language=JavaScript>
+        function reload(form) {
+            var val = form.depa.options[form.depa.options.selectedIndex].value;
+            self.location = 'config_acc.php?d=' + val;
+        }
+    </script>
+
+    <script language=javascript>
+        function numToWhiteSpace(e) {
+            e.value = e.value.replace(/[^abcdefghijklmnopqrstuvwxyzñ ]/gi, "")
+        }
+    </script>
+    <script language=javascript>
+        function keyToWhiteSpace(e) {
+            e.value = e.value.replace(/[^0-9]/g, "")
+        }
+    </script>
 </head>
 
 <body>
@@ -93,8 +125,106 @@ include("db.php");
     </nav>
 
     <div id="bodyPrincipal" class="row">
-
-    </div>
+        <div class="col-xxl-12 col-sm-12">
+            <p class="CatTitulo">Configuración de Cuenta</p>
+        </div>
+        <div class="col-xxl-12">
+            <div class="col-xxl-12 bodyPedido">
+                <div class="row containerPedido">
+                    <div class="col-xxl-10">
+                        <div>
+                            <?php echo "<form method='post' action='actualizar_datos.php?id=$_SESSION[idcliente]'> " ?>
+                            <div class="mb-3 mt-3 row">
+                                <div class="col">
+                                    <?php echo "<input type='text' class='form-control boxPedido'  required placeholder='Nombres' value='$infocliente[Nombres]' name='nombres' onkeydown='numToWhiteSpace(this);' onkeyup='numToWhiteSpace(this);'>" ?>
+                                </div>
+                                <div class="col">
+                                    <?php echo "<input type='text' class='form-control'  required placeholder='Apellidos' value='$infocliente[Apellidos]' name='apellidos' onkeydown='numToWhiteSpace(this);' onkeyup='numToWhiteSpace(this);'>" ?>
+                                </div>
+                            </div>
+                            <div class="mb-3 mt-3 row">
+                                <div class="col">
+                                    <select class="form-control boxPedido" name="depa" required autofocus placeholder="Departamento" onchange="reload(this.form)">
+                                        <?php
+                                        echo "<option value='$infocliente[idDepartamento]'>Actual: $infocliente[Departamento]</option>";
+                                        if ($stmt = $conexion->query("$depa")) {
+                                            while ($col1 = $stmt->fetch_assoc())
+                                                if ($col1['idDepartamento'] == @$getid) {
+                                                    echo "<option selected value='$col1[idDepartamento]'>$col1[Departamento]</option>";
+                                                } else {
+                                                    echo "<option value='$col1[idDepartamento]'>$col1[Departamento]</option>";
+                                                }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" name="muni" required placeholder="Municipio">
+                                        <?php
+                                        echo "<option value='$infocliente[idMunicipio]'>$infocliente[Municipio]</option>";
+                                        if (isset($getid) and strlen($getid) > 0) {
+                                            if ($stmt = $conexion->prepare("SELECT Municipio,idMunicipio FROM municipio WHERE Departamento_idDepartamento=? ORDER BY Municipio")) {
+                                                $stmt->bind_param('i', $getid);
+                                                $stmt->execute();
+                                                $result = $stmt->get_result();
+                                                while ($col2 = $result->fetch_assoc()) {
+                                                    echo "<option value='$col2[idMunicipio]'>$col2[Municipio]</option>";
+                                                }
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 mt-3 row">
+                                <div class="col">
+                                    <?php echo "<input type='text' class='form-control boxPedido'  required placeholder='Barrio' value='$infocliente[Barrio]' name='barrio'>" ?>
+                                </div>
+                                <div class="col">
+                                    <?php echo "<input type='text' class='form-control'  required placeholder='Dirección' value='$infocliente[Direccion]'name='dir'>" ?>
+                                </div>
+                            </div>
+                            <div class="mb-3 mt-3 row">
+                                <div class="col">
+                                    <?php echo "<input type='tel' class='form-control boxPedido'  required placeholder='Celular' value='$infocliente[Celular1]' name='celular1' maxlength='10' onkeydown='keyToWhiteSpace(this);'' onkeyup='keyToWhiteSpace(this);'>" ?>
+                                </div>
+                                <div class="col">
+                                    <?php echo "<input type='tel' class='form-control'  placeholder='Celular 2' value='$infocliente[Celular2]' name='celular2' maxlength='10' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);''>" ?>
+                                </div>
+                            </div>
+                            <div class="mb-3 mt-3 row">
+                                <div class="col">
+                                    <?php echo "<input type='tel' class='form-control boxPedido'  placeholder='Telefono' value='$infocliente[Telefono1]' name='telefono1' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);'>" ?>
+                                </div>
+                                <div class="col">
+                                    <?php echo "<input type='tel' class='form-control'  placeholder='Telefono 2' value='$infocliente[Telefono2]' name='telefono2' onkeydown='keyToWhiteSpace(this);' onkeyup='keyToWhiteSpace(this);'>" ?>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <button type="submit" name="actDatos" class="btn-sm btn-primary btnLeft">Guardar Cambios</button>
+                                </div>
+                            </div>
+                            </form>
+                            <?php echo "<form method='post' action='actualizar_pass.php?id=$_SESSION[idcliente]'> " ?>
+                            <div class="mb-3 mt-3 row">
+                                <div class="col">
+                                    <?php echo "<input type='password' class='form-control boxPedido' minlength='6' required placeholder='Contraseña nueva' name='pass'>" ?>
+                                </div>
+                                <div class="col">
+                                    <?php echo "<input type='password' class='form-control' minlength='6' required placeholder='Confirmar contraseña' name='passcheck'>" ?>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <button type="submit" name="actPass" class="btn-sm btn-primary btnLeft">Cambiar Contraseña</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 
 <footer>

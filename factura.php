@@ -1,119 +1,88 @@
 <?php
-session_start();
+
+require("fpdf/fpdf.php");
 include("db.php");
-?>
+session_start();
 
-<html lang="es">
+$id = $_GET['id'];
 
-<head>
-    <title>QuarzoFibras</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="estilos.css" />
-    <script src="lib/jquery-3.6.0.js"></script>
-    <link rel="stylesheet" href="lib/bootstrap-5/css/bootstrap.css" />
-    <script src="lib/bootstrap-5/js/bootstrap.js"></script>
-</head>
+$consulta = $conexion->query("SELECT Codigo, Fecha, Celular1, Celular2, Telefono1, Telefono2, Direccion, Nombres, Apellidos, Barrio, Municipio, Valor, Nombre_Producto, Descripcion
+FROM pedido 
+INNER JOIN cliente on cliente.idCliente=pedido.Cliente_idCliente 
+INNER JOIN detallesproducto on detallesproducto.idDetallesProducto=pedido.Producto_idProducto
+INNER JOIN municipio on municipio.idMunicipio=cliente.Municipio_idMunicipio
+INNER JOIN celular on celular.idCelular=cliente.Celular_idCelular
+INNER JOIN telefono on telefono.idTelefono=cliente.Telefono_idTelefono
+WHERE `idPedido`= $id;");
+$col = $consulta->fetch_assoc();
 
-<body>
-    <?php
-    error_reporting(E_ERROR | E_PARSE);
-    if ($_SESSION['email'] == !null)
-        echo "<div class='row navPrincipal'>";
-    else
-        echo "<div class='row navPrincipalNoLogged'>";
-    ?>
-    <div class="col-xxl-6 col-sm-6 logo">
-        <img class="imgLogo" src="img/logo.gif">
-    </div>
-    <div class="col-xxl-2 col-sm-2 cart">
-        <?php
-        if ($_SESSION["email"] == 'cproberto026@gmail.com') {
-            echo "<a href='carrito_adm.php'><img src='img/Shopping-cart.png' width='64px' height='56px'></a>";
-        } else {
-            echo "<a href='carrito.php'><img src='img/Shopping-cart.png' width='64px' height='56px'></a>";
-        }
-        ?>
-    </div>
-    <div class="col-xxl-2 col-sm-2 login">
-        <?php
-        if ($_SESSION["email"] != null)
-            echo "<a href='#'><img style='width: 64px;height: 64px;border-radius: 45%;' src='img/default_profile.png'></a>";
-        else
-            echo "<a class='noDecoration' href='frm_login.php'><p class='h5'>Iniciar Sesión</p></a>"
-        ?>
-    </div>
-    <div class="col-xxl-2 col-sm-2 signup">
-        <?php
-        if ($_SESSION["email"] != null)
-            echo "<nav style='padding-top: 0% !important;' class='navbar navbar-expand-sm RedColor navbar-dark'>
-                        <div  class='container-fluid'>
-                            <ul class='navbar-nav'>
-                                <li class='nav-item dropdown navCat'>
-                                <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' href='config_acc.php'><img style='width: 64px;height: 64px;' src='img/settings_icon.png'></a>
-                                    <ul class='dropdown-menu bg-dark'>
-                                        <li><a class='dropdown-item text-white' href='config_acc.php'>Configuración</a></li>
-                                        <li><a class='dropdown-item text-white' href='logout.php'>Cerrar Sesión</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>";
-        else
-            echo "<a class='noDecoration' href='frm_signup.php'><p class='h5'>Registrarse</p></a>";
-        ?>
-    </div>
-    </div>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-        <div class="container-fluid">
-            <ul class="navbar-nav">
-                <li class="nav-item navHome">
-                    <a class="nav-link" href="principal.php">Inicio</a>
-                </li>
-                <li class="nav-item dropdown navCat">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Catálogo de Productos</a>
-                    <ul class="dropdown-menu bg-dark">
-                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=1">Alcobas</a></li>
-                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=2">Baños</a></li>
-                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=3">Barras</a></li>
-                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=4">Closets</a></li>
-                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=5">Jacuzzis</a></li>
-                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=6">Tinas</a></li>
-                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=7">Piscinas</a></li>
-                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=8">Stands</a></li>
-                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=9">Cocinas</a></li>
-                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=10">Lavaderos</a></li>
-                        <li><a class="dropdown-item text-white" href="catalogo.php?cat=11">Lavamanos</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item navAbout">
-                    <a class="nav-link" href="about.php">Sobre nosotros</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+$iva = $col['Valor'] * 0.19;
+$total = $iva + $col['Valor'];
 
-    <div id="bodyPrincipal" class="row">
+$p = new FPDF();
+$p->SetTopMargin(20);
+$p->AddPage();
+$p->SetTitle("Factura - QuarzoFibras");
+$p->SetAuthor("QuarzoFibras");
 
-    </div>
-</body>
+$p->SetFont("Arial", "B", "24");
+$p->Cell(0, 10, "QUARZOFIBRAS", 0, 1);
 
-<footer>
-    <div class="row footer">
-        <div class="col-xxl-4 col-sm-4">
-            <p style="font-size: 30px;">QuarzoFibras</p>
-            <p>Elegancia, sencillez y tecnología</p>
-        </div>
-        <div class="col-xxl-4 col-sm-4">
-            <p class="footerTitulo">UBICACIÓN</p>
-            <p>CALLE 8 No 27-31</p>
-            <p>Barrio las brisas Neiva – Huila</p>
-        </div>
-        <div class="col-xxl-4 col-sm-4">
-            <p class="footerTitulo">CONTACTO</p>
-            <p class="text-secondary">quarzofibras@hotmail.com</p>
-            <p>318 8213633 – 3167545245</p>
-        </div>
-    </div>
-</footer>
+$p->SetFont("Arial", "IB", "8");
+$p->Cell(0, 2, utf8_decode("Elegancia, sencillez y tecnología a la vanguardia para las nuevas bañeras de hidromasaje"), 0, 1);
+$p->Ln();
+$p->Ln();
+$p->Ln();
+$p->SetFont("Arial", "", "8");
+$p->Cell(40, 4, "Cll 8 #27-31", 0, 1);
+$p->Cell(40, 4, "Neiva - Huila", 0, 0);
 
-</html>
+$p->SetFont("Arial", "B", "8");
+$p->Cell(125, 4, "FECHA", 0, 0, "R");
+$p->SetFont("Arial", "", "8");
+$p->Cell(17.2, 4, "$col[Fecha]", 0, 1, "R");
+
+$p->SetFont("Arial", "", "8");
+$p->Cell(40, 4, "318 8213633 - 3167545245", 0, 0);
+
+$p->SetFont("Arial", "B", "8");
+$p->Cell(125, 4, "FACTURA", 0, 0, "R");
+$p->SetFont("Arial", "", "8");
+$p->Cell(17, 4, "$col[Codigo]", 0, 1, "R");
+$p->Ln();
+$p->Ln();
+
+$p->SetFont("Arial", "B", "9");
+$p->Cell(0, 5, "FACTURAR A:", 0, 1);
+
+$p->SetFont("Arial", "", "8");
+$p->Cell(0, 4, "$col[Nombres] $col[Apellidos]", 0, 1);
+$p->Cell(0, 4, "$col[Direccion] - $col[Barrio]", 0, 1);
+$p->Cell(0, 4, "$col[Municipio]", 0, 1);
+$p->Cell(0, 4, "$col[Celular1]", 0, 1);
+$p->Cell(0, 4, "$col[Telefono1]", 0, 1);
+$p->Ln();
+$p->Ln();
+
+$p->SetFont("Arial", "B", "10");
+$p->SetFillColor(200, 255, 255);
+$p->Cell(0, 4, utf8_decode("DESCRIPCIÓN"), 1, 0, "C", true);
+$p->Cell(0, 4, "CANTIDAD", 1, 1, "R");
+$p->Cell(169, 10, utf8_decode("$col[Descripcion]"), 1, 0, "L");
+$p->Cell(0, 10, "         1", 1, 1, "L");
+
+$p->SetFont("Arial", "", "10");
+$p->Cell(170, 6, "SUBTOTAL  ", 0, 0, "R");
+$p->Cell(-1, 5, "$", 0, 0, "L");
+$p->Cell(0, 5, "$col[Valor]", 1, 1, "R");
+
+$p->Cell(170, 6, "IVA 19%  ", 0, 0, "R");
+$p->Cell(-1, 5, "$", 0, 0, "L");
+$p->Cell(0, 5, "$iva", 1, 1, "R");
+
+$p->SetFont("Arial", "B", "10");
+$p->Cell(170, 6, "TOTAL  ", 0, 0, "R");
+$p->Cell(-1, 5, "$", 0, 0, "L");
+$p->Cell(0, 5, "$total", 1, 1, "R");
+
+$p->Output('', 'Factura_Electronica_QuarzoFibras.pdf');

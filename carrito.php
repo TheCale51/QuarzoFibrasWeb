@@ -116,7 +116,7 @@ $consulta = $conexion->query("SELECT * FROM `pedido` INNER JOIN producto on prod
                                     <input type='hidden' value='$col[Codigo]' name='delcodigo'></input>
                                     <div>
                                         <button type='submit' name='delpedido' class='btn-sm btn-primary'>Cancelar Pedido</button></form>
-                                        <button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Ver Factura</button>
+                                        <a href='factura.php?id=$col[idPedido]'><button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Ver Factura</button></a>
                                         <h5 style='text-align: left;'><span>Estado: <span>$col[Estado]</span></span></h5>
                                         <h5 style='text-align: left;'><span>Codigo: <span'>$col[Codigo]</span></span></h5>
                                         <h5 style='text-align: left;'><span>Fecha: <span>$col[Fecha]</span></span></h5>

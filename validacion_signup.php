@@ -3,7 +3,7 @@ include("db.php");
 
 if (isset($_POST['register'])){
     if ($_POST['pass'] === $_POST['passcheck']){
-        if (strlen($_POST['nombres']) >= 1 && strlen($_POST['apellidos']) >= 1 && strlen($_POST['email']) >= 1 && strlen($_POST['celular1']) >= 1 && strlen($_POST['pass']) >= 1 && strlen($_POST['passcheck']) >= 1){
+        if (strlen($_POST['nombres']) >= 1 && strlen($_POST['apellidos']) >= 1 && strlen($_POST['email']) >= 1 && strlen($_POST['celular1']) >= 1 && strlen($_POST['pass']) >= 6 && strlen($_POST['passcheck']) >= 6){
 
         $nombres=trim($_POST['nombres']);
         $apellidos=trim($_POST['apellidos']);
