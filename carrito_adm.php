@@ -151,7 +151,7 @@ if (strlen($estado) > 0) {
                                         </form>
                                         <div>
                                             <button form='dPedido' type='submit' name='delpedido' class='btn-sm btn-primary'>Cancelar Pedido</button>
-                                            <a href='factura.php?id=$col[idPedido]'><button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Ver Factura</button></a>
+                                            <a href='factura.php?id=$col[idPedido]' target='_blank'><button type='button' style='margin-top: 5px;' class='btn-sm btn-primary'>Ver Factura</button></a>
                                             <h5 style='text-align: left;'><span>Estado:</span><form id='formEst$col[idPedido]' method='post' action='actualizar_estado.php'><select name='pEstado'><option value=''>Actual: $col[Estado]</option> <option value='En Espera'>En Espera</option> <option value='Enviado'>Enviado</option> <option value='Entregado'>Entregado</option> </select></form></h5>
                                             <h5 style='text-align: left;'><span>Codigo: <span'>$col[Codigo]</span></span></h5>
                                             <h5 style='text-align: left;'><span>Fecha: <span>$col[Fecha]</span></span></h5>
